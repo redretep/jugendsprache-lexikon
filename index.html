@@ -192,7 +192,7 @@
 
         async function fetchGroqExplanation(word, shortDef) {
             const systemPrompt = "Antworte ohne Kommentare, Einleitungen oder Höflichkeitsfloskeln. Nutze einfache Sprache. Strukturiere die Antwort in diese drei Abschnitte mit Markdown-Überschriften (###): 1. Bedeutung, 2. Herkunft, 3. Beispiele. Antworte auf Deutsch.";
-            const userQuery = `Erkläre den Jugendbegriff "${word}". Kurze Definition als Basis: ${shortDef}`;
+            const userQuery = `Erkläre den Jugendbegriff "${word}". Kurze Definition als Basis: ${shortDef}. Wiederhole nicht diese Definition in lang sondern schreibe eine neue detaillierte Erklärung auf Basis deines Wissens`;
 
             const key = getNextApiKey();
             if (!key) return null;
