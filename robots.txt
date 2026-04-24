@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://redretep.github.io/jugendsprache-lexikon/sitemap.xml
