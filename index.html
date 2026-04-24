@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-site-verification" content="yqf4zVoABy7zVMZgsVXoqanPUo-7V4GYohm2qe4GsJI" />
     <title>Jugendsprache Wörterbuch</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -14,6 +13,7 @@
             background-color: #fcfcfc;
             color: #1a1a1a;
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
 
         .search-container {
@@ -26,7 +26,8 @@
 
         .word-card {
             border-bottom: 1px solid #f0f0f0;
-            transition: background-color 0.15s ease;
+            transition: all 0.2s ease;
+            cursor: pointer;
         }
 
         .word-card:last-child {
@@ -35,11 +36,28 @@
 
         .word-card:hover {
             background-color: #f9f9f9;
+            padding-left: 2.25rem;
         }
 
         input:focus {
             outline: none;
             border-color: #d1d1d1;
+        }
+
+        .detail-view {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100%;
+            background: white;
+            z-index: 50;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-y: auto;
+        }
+
+        .detail-view.active {
+            right: 0;
         }
 
         .badge {
@@ -52,120 +70,261 @@
             color: #717171;
             font-weight: 500;
         }
+
+        .gemini-content {
+            line-height: 1.8;
+            color: #374151;
+        }
+
+        .gemini-content h3 {
+            font-weight: 600;
+            color: #111;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .gemini-content p {
+            margin-bottom: 1.25rem;
+        }
+
+        .gemini-content ul {
+            list-style-type: none;
+            padding: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .gemini-content li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .gemini-content li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #d1d1d1;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d1d1d1;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body class="min-h-screen">
 
-    <div class="max-w-3xl mx-auto px-6 py-16">
-        <!-- Header -->
+    <!-- Hauptansicht -->
+    <div id="mainView" class="max-w-3xl mx-auto px-6 py-16 transition-opacity duration-300">
         <header class="mb-12">
-            <h1 class="text-4xl font-semibold tracking-tight mb-3">Wörterbuch</h1>
+            <h1 class="text-4xl font-semibold tracking-tight mb-3 text-black">Glossar</h1>
             <p class="text-gray-500 text-lg">Aktuelle Begriffe der Jugendsprache.</p>
         </header>
 
-        <!-- Search & Filter Area -->
         <div class="search-container py-6 mb-10">
             <div class="flex flex-col sm:flex-row gap-3">
                 <div class="relative flex-grow">
                     <input 
                         type="text" 
                         id="searchInput" 
-                        placeholder="Begriff oder Bedeutung suchen..." 
-                        class="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-sm transition-all shadow-sm focus:shadow-md"
+                        placeholder="Begriff suchen..." 
+                        class="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-sm shadow-sm focus:shadow-md"
                     >
                 </div>
                 <div class="flex gap-2">
-                    <button 
-                        id="sortAsc" 
-                        title="A bis Z sortieren"
-                        class="px-4 py-3 bg-white border border-gray-200 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors shadow-sm active:bg-gray-100"
-                    >
-                        A-Z
-                    </button>
-                    <button 
-                        id="sortDesc" 
-                        title="Z bis A sortieren"
-                        class="px-4 py-3 bg-white border border-gray-200 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors shadow-sm active:bg-gray-100"
-                    >
-                        Z-A
-                    </button>
+                    <button id="sortAsc" class="px-4 py-3 bg-white border border-gray-200 rounded-lg text-sm font-medium hover:bg-gray-50 shadow-sm active:bg-gray-100">A-Z</button>
+                    <button id="sortDesc" class="px-4 py-3 bg-white border border-gray-200 rounded-lg text-sm font-medium hover:bg-gray-50 shadow-sm active:bg-gray-100">Z-A</button>
                 </div>
             </div>
-            <div id="resultCount" class="mt-4 text-[10px] text-gray-400 font-bold uppercase tracking-[0.2em]">
-                Initialisiere...
-            </div>
+            <div id="resultCount" class="mt-4 text-[10px] text-gray-400 font-bold uppercase tracking-[0.2em]">Initialisiere...</div>
         </div>
 
-        <!-- Dictionary List -->
         <div id="dictionaryList" class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
-            <div class="p-20 text-center text-gray-400">
-                <div class="animate-pulse">Lade Datenbank...</div>
+            <div class="p-20 text-center text-gray-400 animate-pulse">Lade Datenbank...</div>
+        </div>
+    </div>
+
+    <!-- Detailansicht (Slide-in) -->
+    <div id="detailView" class="detail-view">
+        <div class="max-w-3xl mx-auto px-6 py-12">
+
+
+            <button id="closeDetail" class="mb-12 flex items-center text-sm font-medium text-gray-400 hover:text-black transition-colors group">
+                <svg class="w-5 h-5 mr-2 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                Zurück
+            </button>
+            
+            <div id="detailContent">
+                <!-- Inhalt wird dynamisch gefüllt -->
             </div>
         </div>
     </div>
 
     <script>
+        const apiKey = "GEMINI_API_KEY"; 
         let dictionaryData = [];
         let filteredData = [];
+        
         const dictionaryList = document.getElementById('dictionaryList');
         const searchInput = document.getElementById('searchInput');
         const resultCount = document.getElementById('resultCount');
         const sortAscBtn = document.getElementById('sortAsc');
         const sortDescBtn = document.getElementById('sortDesc');
+        const detailView = document.getElementById('detailView');
+        const detailContent = document.getElementById('detailContent');
+        const closeDetail = document.getElementById('closeDetail');
+
+        async function fetchGeminiExplanation(word, shortDef) {
+            const systemPrompt = "Antworte ohne Kommentare, Einleitungen oder Höflichkeitsfloskeln. Nutze einfache Sprache. Strukturiere die Antwort in diese drei Abschnitte mit Markdown-Überschriften (###): 1. Bedeutung, 2. Herkunft, 3. Beispiele. Antworte auf Deutsch.";
+            const userQuery = `Erkläre den Jugendbegriff "${word}". Basis: ${shortDef}`;
+
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+            
+            const payload = {
+                contents: [{ parts: [{ text: userQuery }] }],
+                systemInstruction: { parts: [{ text: systemPrompt }] }
+            };
+
+            for (let i = 0; i < 5; i++) {
+                try {
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    
+                    if (response.ok) {
+                        const result = await response.json();
+                        return result.candidates?.[0]?.content?.parts?.[0]?.text;
+                    }
+                } catch (e) {}
+                await new Promise(resolve => setTimeout(resolve, Math.pow(2, i) * 1000));
+            }
+            return null;
+        }
 
         async function loadData() {
             try {
-                const response = await fetch('jugendsprache.json');
-                if (!response.ok) throw new Error('Die Datei jugendsprache.json konnte nicht geladen werden.');
-                
+                const response = await fetch('https://redretep.github.io/jugendsprache-lexikon/jugendsprache.json');
+                if (!response.ok) throw new Error('Datei nicht gefunden.');
                 const json = await response.json();
-                
-                // Zugriff auf den spezifischen Key in deiner Datei
-                if (json.jugendsprache_aktuell && Array.isArray(json.jugendsprache_aktuell)) {
-                    dictionaryData = json.jugendsprache_aktuell;
-                } else {
-                    throw new Error('Ungültiges JSON-Format: "jugendsprache_aktuell" Array fehlt.');
-                }
-
-                // Initial alphabetisch sortieren
+                dictionaryData = json.jugendsprache_aktuell || [];
                 dictionaryData.sort((a, b) => a.begriff.localeCompare(b.begriff));
                 filteredData = [...dictionaryData];
+                
+                handleHashChange();
                 renderDictionary(filteredData);
             } catch (error) {
-                dictionaryList.innerHTML = `
-                    <div class="p-12 text-center text-red-500">
-                        <p class="font-semibold mb-2">Fehler beim Laden</p>
-                        <p class="text-sm opacity-75">${error.message}</p>
-                    </div>`;
-                resultCount.innerText = "Fehler";
+                dictionaryList.innerHTML = `<div class="p-12 text-center text-red-500">${error.message}</div>`;
             }
         }
 
         function renderDictionary(data) {
             if (data.length === 0) {
-                dictionaryList.innerHTML = '<div class="p-20 text-center text-gray-400 italic">Keine Ergebnisse gefunden.</div>';
-                resultCount.innerText = "0 Ergebnisse";
+                dictionaryList.innerHTML = '<div class="p-20 text-center text-gray-400">Keine Ergebnisse.</div>';
                 return;
             }
-
             dictionaryList.innerHTML = '';
             data.forEach(item => {
                 const card = document.createElement('div');
-                card.className = 'word-card p-8';
+                card.className = 'word-card p-8 group';
+                card.onclick = () => openWordDetail(item.begriff);
                 card.innerHTML = `
-                    <div class="flex items-center justify-between mb-3">
-                        <h2 class="text-xl font-semibold tracking-tight text-gray-900">${item.begriff}</h2>
-                        <span class="badge"></span>
+                    <div class="flex items-center justify-between mb-2">
+                        <h2 class="text-xl font-semibold tracking-tight">${item.begriff}</h2>
+                        <svg class="w-5 h-5 text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                     </div>
-                    <p class="text-gray-600 leading-relaxed text-base">${item.bedeutung}</p>
+                    <p class="text-gray-500 truncate text-sm font-medium">${item.bedeutung}</p>
                 `;
                 dictionaryList.appendChild(card);
             });
-
             resultCount.innerText = `${data.length} Begriffe geladen`;
         }
 
-        // Live Search
+        function formatMarkdown(text) {
+            if (!text) return "";
+            return text
+                .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+                .replace(/\*\*(.*?)\*\*/g, '<strong class="text-black font-semibold">$1</strong>')
+                .replace(/\n\n/g, '</p><p>')
+                .replace(/^- (.*)/gm, '<li>$1</li>')
+                .replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');
+        }
+
+        async function openWordDetail(begriff) {
+            try { window.location.hash = begriff; } catch (e) {}
+
+            const item = dictionaryData.find(i => i.begriff === begriff);
+            if (!item) return;
+
+            detailContent.innerHTML = `
+                <h1 class="text-6xl font-bold mb-6 tracking-tighter text-black">${item.begriff}</h1>
+                <div class="badge mb-10">Basis-Definition</div>
+                <p class="text-2xl text-gray-600 mb-16 leading-relaxed font-light">${item.bedeutung}</p>
+                
+                <div id="geminiSection" class="border-t border-gray-100 pt-16">
+                    <div class="space-y-6">
+                        <div class="h-4 bg-gray-100 rounded w-1/4 animate-pulse"></div>
+                        <div class="space-y-3">
+                            <div class="h-3 bg-gray-50 rounded animate-pulse"></div>
+                            <div class="h-3 bg-gray-50 rounded w-5/6 animate-pulse"></div>
+                            <div class="h-3 bg-gray-50 rounded w-4/6 animate-pulse"></div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            detailView.classList.add('active');
+            document.body.style.overflow = 'hidden';
+
+            const explanation = await fetchGeminiExplanation(item.begriff, item.bedeutung);
+            const geminiSection = document.getElementById('geminiSection');
+
+            if (explanation) {
+                geminiSection.innerHTML = `
+                    <div class="flex items-center mb-10">
+                        <div class="w-1 h-6 bg-black mr-4"></div>
+                        <h3 class="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400">KI-Deep Dive</h3>
+                    </div>
+                    <div class="gemini-content text-lg">
+                        <p>${formatMarkdown(explanation)}</p>
+                    </div>
+                `;
+            } else {
+                geminiSection.innerHTML = `<p class="text-gray-400 italic text-sm">Zusätzliche Infos konnten nicht geladen werden.</p>`;
+            }
+        }
+
+        function closeDetailView() {
+            detailView.classList.remove('active');
+            document.body.style.overflow = '';
+            try {
+                if (window.location.hash !== "") {
+                    history.pushState("", document.title, window.location.pathname + window.location.search);
+                }
+            } catch (e) {
+                try { window.location.hash = ""; } catch(e2) {}
+            }
+        }
+
+        function handleHashChange() {
+            try {
+                const hash = decodeURIComponent(window.location.hash.substring(1));
+                if (hash) openWordDetail(hash);
+                else closeDetailView();
+            } catch (e) {}
+        }
+
+        closeDetail.onclick = closeDetailView;
+        window.onhashchange = handleHashChange;
+
         searchInput.addEventListener('input', (e) => {
             const term = e.target.value.toLowerCase().trim();
             filteredData = dictionaryData.filter(item => 
@@ -175,19 +334,9 @@
             renderDictionary(filteredData);
         });
 
-        // Sortierung (Ascending)
-        sortAscBtn.addEventListener('click', () => {
-            filteredData.sort((a, b) => a.begriff.localeCompare(b.begriff));
-            renderDictionary(filteredData);
-        });
+        sortAscBtn.onclick = () => { filteredData.sort((a, b) => a.begriff.localeCompare(b.begriff)); renderDictionary(filteredData); };
+        sortDescBtn.onclick = () => { filteredData.sort((a, b) => b.begriff.localeCompare(a.begriff)); renderDictionary(filteredData); };
 
-        // Sortierung (Descending)
-        sortDescBtn.addEventListener('click', () => {
-            filteredData.sort((a, b) => b.begriff.localeCompare(a.begriff));
-            renderDictionary(filteredData);
-        });
-
-        // Start
         document.addEventListener('DOMContentLoaded', loadData);
     </script>
 </body>
