@@ -12,19 +12,20 @@
             font-family: 'Inter', sans-serif;
             background-color: #fcfcfc;
             color: #1a1a1a;
+            -webkit-font-smoothing: antialiased;
         }
 
         .search-container {
             position: sticky;
             top: 0;
             background-color: rgba(252, 252, 252, 0.9);
-            backdrop-filter: blur(8px);
+            backdrop-filter: blur(12px);
             z-index: 10;
         }
 
         .word-card {
-            border-bottom: 1px solid #eee;
-            transition: background-color 0.2s ease;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background-color 0.15s ease;
         }
 
         .word-card:last-child {
@@ -32,84 +33,79 @@
         }
 
         .word-card:hover {
-            background-color: #f8f8f8;
+            background-color: #f9f9f9;
         }
 
         input:focus {
             outline: none;
-            border-color: #000;
+            border-color: #d1d1d1;
         }
 
         .badge {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 0.05em;
             padding: 2px 8px;
             border-radius: 4px;
-            background: #f0f0f0;
-            color: #666;
+            background: #f1f1f1;
+            color: #717171;
+            font-weight: 500;
         }
     </style>
 </head>
 <body class="min-h-screen">
 
-    <div class="max-w-3xl mx-auto px-6 py-12">
+    <div class="max-w-3xl mx-auto px-6 py-16">
         <!-- Header -->
         <header class="mb-12">
-            <h1 class="text-3xl font-semibold tracking-tight mb-2">Glossar</h1>
-            <p class="text-gray-500">Lexikon der aktuellen Jugendsprache.</p>
+            <h1 class="text-4xl font-semibold tracking-tight mb-3">Glossar</h1>
+            <p class="text-gray-500 text-lg">Aktuelle Begriffe der Jugendsprache.</p>
         </header>
 
         <!-- Search & Filter Area -->
-        <div class="search-container py-4 mb-8">
-            <div class="flex flex-col md:flex-row gap-4">
+        <div class="search-container py-6 mb-10">
+            <div class="flex flex-col sm:flex-row gap-3">
                 <div class="relative flex-grow">
                     <input 
                         type="text" 
                         id="searchInput" 
-                        placeholder="Begriff suchen..." 
-                        class="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-sm transition-all shadow-sm"
+                        placeholder="Begriff oder Bedeutung suchen..." 
+                        class="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-sm transition-all shadow-sm focus:shadow-md"
                     >
                 </div>
                 <div class="flex gap-2">
                     <button 
                         id="sortAsc" 
-                        class="px-4 py-3 bg-white border border-gray-200 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors shadow-sm"
+                        title="A bis Z sortieren"
+                        class="px-4 py-3 bg-white border border-gray-200 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors shadow-sm active:bg-gray-100"
                     >
                         A-Z
                     </button>
                     <button 
                         id="sortDesc" 
-                        class="px-4 py-3 bg-white border border-gray-200 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors shadow-sm"
+                        title="Z bis A sortieren"
+                        class="px-4 py-3 bg-white border border-gray-200 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors shadow-sm active:bg-gray-100"
                     >
                         Z-A
                     </button>
                 </div>
             </div>
-            <div id="resultCount" class="mt-4 text-xs text-gray-400 font-medium uppercase tracking-widest">
-                Lade Daten...
+            <div id="resultCount" class="mt-4 text-[10px] text-gray-400 font-bold uppercase tracking-[0.2em]">
+                Initialisiere...
             </div>
         </div>
 
         <!-- Dictionary List -->
-        <div id="dictionaryList" class="bg-white border border-gray-100 rounded-xl shadow-sm overflow-hidden">
-            <!-- Items werden hier injiziert -->
-            <div class="p-12 text-center text-gray-400 italic">
-                Wörterbuch wird geladen...
+        <div id="dictionaryList" class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+            <div class="p-20 text-center text-gray-400">
+                <div class="animate-pulse">Lade Datenbank...</div>
             </div>
         </div>
     </div>
 
     <script>
-        /**
-         * Erwartetes JSON Format in jugendsprache.json:
-         * [
-         * { "wort": "Cringe", "definition": "Fremdschämen oder peinlich.", "beispiel": "Das war echt cringe von ihm." },
-         * ...
-         * ]
-         */
-
         let dictionaryData = [];
+        let filteredData = [];
         const dictionaryList = document.getElementById('dictionaryList');
         const searchInput = document.getElementById('searchInput');
         const resultCount = document.getElementById('resultCount');
@@ -118,75 +114,80 @@
 
         async function loadData() {
             try {
-                let data;
-                try {
-                    const response = await fetch('jugendsprache.json');
-                    if (!response.ok) throw new Error('Datei nicht gefunden');
-                    data = await response.json();
-                } catch (e) {
-                    console.warn("jugendsprache.json nicht gefunden, nutze Beispiel-Daten.");
-                    data = [
-                        { wort: "Keine Wörter gefunden", definition: "Datenbank überprüfen." },
-                    ];
+                const response = await fetch('jugendsprache.json');
+                if (!response.ok) throw new Error('Die Datei jugendsprache.json konnte nicht geladen werden.');
+                
+                const json = await response.json();
+                
+                // Zugriff auf den spezifischen Key in deiner Datei
+                if (json.jugendsprache_aktuell && Array.isArray(json.jugendsprache_aktuell)) {
+                    dictionaryData = json.jugendsprache_aktuell;
+                } else {
+                    throw new Error('Ungültiges JSON-Format: "jugendsprache_aktuell" Array fehlt.');
                 }
 
-                dictionaryData = data;
-                renderDictionary(dictionaryData);
+                // Initial alphabetisch sortieren
+                dictionaryData.sort((a, b) => a.begriff.localeCompare(b.begriff));
+                filteredData = [...dictionaryData];
+                renderDictionary(filteredData);
             } catch (error) {
-                dictionaryList.innerHTML = `<div class="p-8 text-red-500">Fehler beim Laden der Datenbank: ${error.message}</div>`;
+                dictionaryList.innerHTML = `
+                    <div class="p-12 text-center text-red-500">
+                        <p class="font-semibold mb-2">Fehler beim Laden</p>
+                        <p class="text-sm opacity-75">${error.message}</p>
+                    </div>`;
+                resultCount.innerText = "Fehler";
             }
         }
 
         function renderDictionary(data) {
             if (data.length === 0) {
-                dictionaryList.innerHTML = '<div class="p-12 text-center text-gray-400">Keine Einträge gefunden.</div>';
-                resultCount.innerText = "0 Begriffe gefunden";
+                dictionaryList.innerHTML = '<div class="p-20 text-center text-gray-400 italic">Keine Ergebnisse gefunden.</div>';
+                resultCount.innerText = "0 Ergebnisse";
                 return;
             }
 
             dictionaryList.innerHTML = '';
             data.forEach(item => {
                 const card = document.createElement('div');
-                card.className = 'word-card p-6';
+                card.className = 'word-card p-8';
                 card.innerHTML = `
-                    <div class="flex items-start justify-between mb-2">
-                        <h2 class="text-xl font-bold">${item.wort}</h2>
-                        <span class="badge">Begriff</span>
+                    <div class="flex items-center justify-between mb-3">
+                        <h2 class="text-xl font-semibold tracking-tight text-gray-900">${item.begriff}</h2>
+                        <span class="badge">Slang</span>
                     </div>
-                    <p class="text-gray-700 leading-relaxed mb-3">${item.definition}</p>
-                    ${item.beispiel ? `<p class="text-sm text-gray-400 italic">"${item.beispiel}"</p>` : ''}
+                    <p class="text-gray-600 leading-relaxed text-base">${item.bedeutung}</p>
                 `;
                 dictionaryList.appendChild(card);
             });
 
-            resultCount.innerText = `${data.length} Begriffe gefunden`;
+            resultCount.innerText = `${data.length} Begriffe geladen`;
         }
 
-        // Suchfunktion
+        // Live Search
         searchInput.addEventListener('input', (e) => {
-            const term = e.target.value.toLowerCase();
-            const filtered = dictionaryData.filter(item => 
-                item.wort.toLowerCase().includes(term) || 
-                item.definition.toLowerCase().includes(term)
+            const term = e.target.value.toLowerCase().trim();
+            filteredData = dictionaryData.filter(item => 
+                item.begriff.toLowerCase().includes(term) || 
+                item.bedeutung.toLowerCase().includes(term)
             );
-            renderDictionary(filtered);
+            renderDictionary(filteredData);
         });
 
-        // Sortierung
+        // Sortierung (Ascending)
         sortAscBtn.addEventListener('click', () => {
-            const sorted = [...dictionaryData].sort((a, b) => a.wort.localeCompare(b.wort));
-            dictionaryData = sorted; // Update global state
-            renderDictionary(dictionaryData);
+            filteredData.sort((a, b) => a.begriff.localeCompare(b.begriff));
+            renderDictionary(filteredData);
         });
 
+        // Sortierung (Descending)
         sortDescBtn.addEventListener('click', () => {
-            const sorted = [...dictionaryData].sort((a, b) => b.wort.localeCompare(a.wort));
-            dictionaryData = sorted; // Update global state
-            renderDictionary(dictionaryData);
+            filteredData.sort((a, b) => b.begriff.localeCompare(a.begriff));
+            renderDictionary(filteredData);
         });
 
-        // Initialer Start
-        window.onload = loadData;
+        // Start
+        document.addEventListener('DOMContentLoaded', loadData);
     </script>
 </body>
 </html>
