@@ -60,17 +60,6 @@
             right: 0;
         }
 
-        .badge {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            padding: 2px 8px;
-            border-radius: 4px;
-            background: #f1f1f1;
-            color: #717171;
-            font-weight: 500;
-        }
-
         .groq-content {
             line-height: 1.8;
             color: #374151;
@@ -107,6 +96,19 @@
             color: #d1d1d1;
         }
 
+        /* Toggle Switch Styles */
+        .toggle-dot {
+            transition: all 0.3s ease-in-out;
+        }
+        input:checked ~ .toggle-dot {
+            transform: translateX(100%);
+            background-color: #10b981;
+        }
+        input:checked ~ .toggle-bg {
+            background-color: #ecfdf5;
+            border-color: #10b981;
+        }
+
         ::-webkit-scrollbar {
             width: 6px;
         }
@@ -128,8 +130,8 @@
         </header>
 
         <div class="search-container py-6 mb-10">
-            <div class="flex flex-col sm:flex-row gap-3">
-                <div class="relative flex-grow">
+            <div class="flex flex-col sm:flex-row gap-3 items-center">
+                <div class="relative flex-grow w-full">
                     <input 
                         type="text" 
                         id="searchInput" 
@@ -137,7 +139,17 @@
                         class="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-sm shadow-sm focus:shadow-md"
                     >
                 </div>
-                <div class="flex gap-2">
+                <div class="flex gap-2 items-center shrink-0">
+                    <!-- Filter Button -->
+                    <label for="filterToggle" class="flex items-center cursor-pointer bg-white border border-gray-200 rounded-lg px-3 py-2.5 shadow-sm hover:bg-gray-50 transition-colors">
+                        <span class="mr-3 text-xs font-bold uppercase tracking-wider text-gray-400">Filter</span>
+                        <div class="relative">
+                            <input type="checkbox" id="filterToggle" class="sr-only">
+                            <div class="toggle-bg block w-10 h-6 rounded-full border border-gray-200 bg-gray-50 transition-colors"></div>
+                            <div class="toggle-dot absolute left-1 top-1 bg-gray-300 w-4 h-4 rounded-full transition-transform"></div>
+                        </div>
+                    </label>
+
                     <button id="sortAsc" class="px-4 py-3 bg-white border border-gray-200 rounded-lg text-sm font-medium hover:bg-gray-50 shadow-sm active:bg-gray-100">A-Z</button>
                     <button id="sortDesc" class="px-4 py-3 bg-white border border-gray-200 rounded-lg text-sm font-medium hover:bg-gray-50 shadow-sm active:bg-gray-100">Z-A</button>
                 </div>
@@ -162,13 +174,17 @@
 
     <script>
         const API_KEYS_URL = "https://groq-api-keys.pages.dev/apikeys.txt";
+        const OFFENSIVE_WORDS_URL = "https://redretep.github.io/jugendsprache-lexikon/anstoessige-begriffe.txt";
+        
         let apiKeys = [];
         let apiKeyIndex = -1;
         let dictionaryData = [];
         let filteredData = [];
+        let offensiveWords = [];
         
         const dictionaryList = document.getElementById('dictionaryList');
         const searchInput = document.getElementById('searchInput');
+        const filterToggle = document.getElementById('filterToggle');
         const resultCount = document.getElementById('resultCount');
         const sortAscBtn = document.getElementById('sortAsc');
         const sortDescBtn = document.getElementById('sortDesc');
@@ -182,6 +198,15 @@
                 const txt = await res.text();
                 apiKeys = txt.split(/\r?\n/).map(l => l.trim()).filter(l => l);
             } catch(e) { console.error("Key fetch failed", e); }
+        }
+
+        async function initOffensiveWords() {
+            try {
+                const res = await fetch(OFFENSIVE_WORDS_URL);
+                const txt = await res.text();
+                // Trenne nach Komma oder Zeilenumbruch und säubere Begriffe
+                offensiveWords = txt.split(/,|\n/).map(w => w.trim().toLowerCase()).filter(w => w.length > 0);
+            } catch(e) { console.error("Offensive words fetch failed", e); }
         }
 
         function getNextApiKey() {
@@ -223,25 +248,46 @@
         }
 
         async function loadData() {
-            await initApiKeys();
+            await Promise.all([initApiKeys(), initOffensiveWords()]);
             try {
                 const response = await fetch('https://redretep.github.io/jugendsprache-lexikon/jugendsprache.json');
                 if (!response.ok) throw new Error('Daten konnten nicht geladen werden.');
                 const json = await response.json();
                 dictionaryData = json.jugendsprache_aktuell || [];
                 dictionaryData.sort((a, b) => a.begriff.localeCompare(b.begriff));
-                filteredData = [...dictionaryData];
                 
+                applyFilters();
                 handleHashChange();
-                renderDictionary(filteredData);
             } catch (error) {
                 dictionaryList.innerHTML = `<div class="p-12 text-center text-red-500">${error.message}</div>`;
             }
         }
 
+        function applyFilters() {
+            const term = searchInput.value.toLowerCase().trim();
+            const isFilterActive = filterToggle.checked;
+
+            filteredData = dictionaryData.filter(item => {
+                const matchesSearch = item.begriff.toLowerCase().includes(term) || 
+                                    item.bedeutung.toLowerCase().includes(term);
+                
+                if (!matchesSearch) return false;
+
+                if (isFilterActive) {
+                    // Prüfe ob Begriff in der Sperrliste steht
+                    return !offensiveWords.includes(item.begriff.toLowerCase());
+                }
+
+                return true;
+            });
+
+            renderDictionary(filteredData);
+        }
+
         function renderDictionary(data) {
             if (data.length === 0) {
                 dictionaryList.innerHTML = '<div class="p-20 text-center text-gray-400">Keine Ergebnisse.</div>';
+                resultCount.innerText = "0 Begriffe verfügbar";
                 return;
             }
             dictionaryList.innerHTML = '';
@@ -326,14 +372,8 @@
         closeDetail.onclick = closeDetailView;
         window.onhashchange = handleHashChange;
 
-        searchInput.addEventListener('input', (e) => {
-            const term = e.target.value.toLowerCase().trim();
-            filteredData = dictionaryData.filter(item => 
-                item.begriff.toLowerCase().includes(term) || 
-                item.bedeutung.toLowerCase().includes(term)
-            );
-            renderDictionary(filteredData);
-        });
+        searchInput.addEventListener('input', applyFilters);
+        filterToggle.addEventListener('change', applyFilters);
 
         sortAscBtn.onclick = () => { filteredData.sort((a, b) => a.begriff.localeCompare(b.begriff)); renderDictionary(filteredData); };
         sortDescBtn.onclick = () => { filteredData.sort((a, b) => b.begriff.localeCompare(a.begriff)); renderDictionary(filteredData); };
