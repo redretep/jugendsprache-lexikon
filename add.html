@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jugendsprache JSON Editor</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #f3f4f6;
+            font-family: 'Inter', sans-serif;
+        }
+        .editor-container {
+            position: relative;
+            background-color: #111827;
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+        .json-editor, .json-backdrop {
+            font-family: 'Fira Code', 'Courier New', monospace;
+            line-height: 1.5;
+            font-size: 12px;
+            padding: 1rem;
+            margin: 0;
+            width: 100%;
+            height: 320px;
+            border: none;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .json-editor {
+            position: relative;
+            background: transparent;
+            color: #4ade80;
+            z-index: 2;
+            resize: none;
+            outline: none;
+        }
+        .json-backdrop {
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: transparent;
+            z-index: 1;
+            pointer-events: none;
+            overflow-y: hidden;
+        }
+        .highlight {
+            background-color: #fde047;
+            color: #000;
+            border-radius: 2px;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1f2937;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4b5563;
+            border-radius: 10px;
+        }
+        @keyframes pulse-subtle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        .loading-pulse {
+            animation: pulse-subtle 1.5s infinite;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
+        <div class="p-6 border-b border-gray-200 bg-indigo-600">
+            <h1 class="text-2xl font-bold text-white">Jugendsprache Editor</h1>
+            <div class="flex justify-between items-center">
+                <p class="text-indigo-100 text-sm">made by redretep/pidi</p>
+                <span id="load-status" class="text-[10px] text-indigo-200 italic">Lade Daten...</span>
+            </div>
+        </div>
+
+        <div class="p-6">
+            <!-- Suchleiste -->
+            <div class="mb-6">
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </span>
+                    <input type="text" id="search-input" oninput="handleSearch()" placeholder="Suchen (Highlightet Treffer im JSON)..." 
+                           class="w-full pl-10 pr-4 py-3 bg-indigo-50 border-none rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none text-gray-700">
+                </div>
+            </div>
+
+            <!-- Formular für neue Wörter -->
+            <div class="mb-8 bg-gray-50 p-4 rounded-lg border border-gray-200">
+                <h2 class="text-lg font-semibold mb-4 text-gray-700">Neues Wort hinzufügen</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-600 mb-1">Begriff</label>
+                        <input type="text" id="new-begriff" placeholder="z.B. Aura" 
+                               class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-500 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-600 mb-1">Bedeutung</label>
+                        <div class="flex gap-2">
+                            <input type="text" id="new-bedeutung" placeholder="Was bedeutet es?" 
+                                   class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-indigo-500 outline-none">
+                            <button onclick="generateGroqDesc()" id="ai-btn" title="Groq AI Beschreibung generieren"
+                                    class="bg-white border border-gray-300 p-2 rounded-md hover:bg-gray-100 transition shadow-sm">
+                                ✨
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="checkAndAdd()" class="mt-4 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-md transition duration-200 font-medium w-full md:w-auto">
+                    Hinzufügen
+                </button>
+            </div>
+
+            <!-- Wort-Liste -->
+            <div class="mb-8">
+                <h2 class="text-lg font-semibold mb-2 text-gray-700 flex justify-between items-center">
+                    Aktuelle Begriffe
+                    <span id="word-count" class="text-sm font-normal text-gray-500 bg-gray-200 px-2 py-1 rounded-full">0 Begriffe</span>
+                </h2>
+                <div id="word-list" class="space-y-2 max-h-64 overflow-y-auto pr-2">
+                    <!-- Einträge werden hier gerendert -->
+                </div>
+            </div>
+
+            <!-- JSON Output / Editor -->
+            <div class="mt-10">
+                <div class="flex justify-between items-center mb-2">
+                    <h2 class="text-lg font-semibold text-gray-700 text-sm">JSON Rohdaten</h2>
+                    <div class="flex gap-2">
+                        <button onclick="downloadJSON()" class="text-xs bg-green-100 text-green-600 px-3 py-1 rounded hover:bg-green-200 transition font-medium">
+                            Download (.json)
+                        </button>
+                        <button onclick="copyToClipboard()" class="text-xs bg-indigo-100 text-indigo-600 px-3 py-1 rounded hover:bg-indigo-200 transition font-medium">
+                            Kopieren
+                        </button>
+                    </div>
+                </div>
+                <div class="editor-container">
+                    <div id="json-backdrop" class="json-backdrop"></div>
+                    <textarea id="json-output" class="json-editor" oninput="handleTextareaInput()" onscroll="syncScroll()"></textarea>
+                    <div id="search-info" class="absolute top-2 right-4 text-indigo-300 text-[10px] hidden bg-gray-800 px-2 py-1 rounded z-10 border border-gray-700">Treffer markiert</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal für Duplikate -->
+    <div id="duplicate-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-xl max-w-md w-full p-6 shadow-2xl">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">Wort bereits vorhanden</h3>
+            <p class="text-gray-600 mb-6">Der Begriff <span id="dup-word" class="font-bold text-indigo-600"></span> existiert bereits. Welche Bedeutung möchtest du behalten?</p>
+            <div class="space-y-4">
+                <button id="keep-old-btn" class="w-full text-left p-4 border rounded-lg hover:border-indigo-500 transition">
+                    <span class="block text-xs font-semibold text-gray-400 uppercase mb-1">Bestehende Bedeutung</span>
+                    <span id="old-desc" class="text-gray-700"></span>
+                </button>
+                <button id="keep-new-btn" class="w-full text-left p-4 border rounded-lg hover:border-indigo-500 transition">
+                    <span class="block text-xs font-semibold text-indigo-400 uppercase mb-1">Neue Bedeutung</span>
+                    <span id="new-desc" class="text-gray-700 font-medium"></span>
+                </button>
+            </div>
+            <div class="mt-6 flex justify-end">
+                <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700 font-medium">Abbrechen</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_KEYS_URL = "https://groq-api-keys.pages.dev/apikeys.txt";
+        const DICTIONARY_URL = "https://redretep.github.io/jugendsprache-lexikon/jugendsprache.json";
+        
+        let apiKeys = [];
+        let apiKeyIndex = -1;
+        
+        // Initialer Mock-Status (wird überschrieben)
+        let data = {
+            "jugendsprache_aktuell": []
+        };
+
+        const listContainer = document.getElementById('word-list');
+        const jsonOutput = document.getElementById('json-output');
+        const jsonBackdrop = document.getElementById('json-backdrop');
+        const searchInput = document.getElementById('search-input');
+        const wordCount = document.getElementById('word-count');
+        const searchInfo = document.getElementById('search-info');
+        const loadStatus = document.getElementById('load-status');
+
+        // Daten laden von externem JSON
+        async function loadExternalData() {
+            try {
+                const res = await fetch(DICTIONARY_URL);
+                if (!res.ok) throw new Error("HTTP Error");
+                const json = await res.json();
+                if (json && json.jugendsprache_aktuell) {
+                    data = json;
+                    loadStatus.innerText = "Daten von GitHub geladen";
+                    loadStatus.classList.replace('text-indigo-200', 'text-green-200');
+                }
+            } catch(e) {
+                console.error("Failed to load dictionary from GitHub", e);
+                loadStatus.innerText = "GitHub-Load fehlgeschlagen (Backup aktiv)";
+                loadStatus.classList.replace('text-indigo-200', 'text-red-200');
+                // Fallback falls GitHub nicht erreichbar
+                data = { "jugendsprache_aktuell": [
+                    { "begriff": "Aura", "bedeutung": "Die Ausstrahlung einer Person." },
+                    { "begriff": "Rizz", "bedeutung": "Charisma beim Flirten." }
+                ]};
+            }
+            updateFullUI();
+        }
+
+        // Groq API Integration
+        async function initApiKeys() {
+            try {
+                const res = await fetch(API_KEYS_URL);
+                const txt = await res.text();
+                apiKeys = txt.split(/\r?\n/).map(l => l.trim()).filter(l => l);
+            } catch(e) { console.error("Key fetch failed", e); }
+        }
+
+        function getNextApiKey() {
+            if (!apiKeys.length) return "";
+            apiKeyIndex = (apiKeyIndex + 1) % apiKeys.length;
+            return apiKeys[apiKeyIndex];
+        }
+
+        async function generateGroqDesc() {
+            const begriff = document.getElementById('new-begriff').value.trim();
+            const aiBtn = document.getElementById('ai-btn');
+            const dInput = document.getElementById('new-bedeutung');
+
+            if (!begriff) return;
+            if (apiKeys.length === 0) await initApiKeys();
+
+            aiBtn.innerHTML = "⏳";
+            aiBtn.classList.add('loading-pulse');
+
+            const key = getNextApiKey();
+            const systemPrompt = "Du bist ein Experte für Jugendsprache. Antworte extrem kurz (max. 10 Wörter) und ohne Einleitung.";
+            const userQuery = `Erkläre kurz den Jugendbegriff: "${begriff}"`;
+
+            try {
+                const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+                    method: "POST",
+                    headers: {
+                        "Authorization": `Bearer ${key}`,
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        model: "llama-3.3-70b-versatile",
+                        messages: [
+                            { role: "system", content: systemPrompt },
+                            { role: "user", content: userQuery }
+                        ],
+                        temperature: 0.6,
+                        max_tokens: 50
+                    })
+                });
+                
+                if (response.ok) {
+                    const resData = await response.json();
+                    const text = resData.choices?.[0]?.message?.content?.trim();
+                    if (text) dInput.value = text.replace(/^"|"$/g, '');
+                }
+            } catch (err) {
+                console.error("Groq Error:", err);
+            } finally {
+                aiBtn.innerHTML = "✨";
+                aiBtn.classList.remove('loading-pulse');
+            }
+        }
+
+        // Suche und Highlights
+        function handleSearch() {
+            const term = searchInput.value.trim();
+            const filtered = data.jugendsprache_aktuell.filter(item => 
+                item.begriff.toLowerCase().includes(term.toLowerCase()) || 
+                item.bedeutung.toLowerCase().includes(term.toLowerCase())
+            );
+
+            renderList(filtered);
+            wordCount.innerText = `${filtered.length} Begriffe`;
+            applyHighlights();
+        }
+
+        function applyHighlights() {
+            const text = jsonOutput.value;
+            const term = searchInput.value.trim();
+            
+            if (!term || term.length < 2) {
+                jsonBackdrop.innerHTML = text.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+                searchInfo.classList.add('hidden');
+                return;
+            }
+
+            const regex = new RegExp(`(${term.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')})`, 'gi');
+            const highlightedText = text
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(regex, '<span class="highlight">$1</span>');
+            
+            jsonBackdrop.innerHTML = highlightedText + '\n';
+            
+            if (text.toLowerCase().includes(term.toLowerCase())) {
+                searchInfo.classList.remove('hidden');
+                const index = text.toLowerCase().indexOf(term.toLowerCase());
+                const lines = text.substring(0, index).split('\n').length;
+                jsonOutput.scrollTop = (lines - 4) * 18;
+            } else {
+                searchInfo.classList.add('hidden');
+            }
+        }
+
+        function handleTextareaInput() {
+            syncFromJson();
+            applyHighlights();
+        }
+
+        function syncScroll() {
+            jsonBackdrop.scrollTop = jsonOutput.scrollTop;
+            jsonBackdrop.scrollLeft = jsonOutput.scrollLeft;
+        }
+
+        function renderList(items) {
+            listContainer.innerHTML = '';
+            items.forEach((item) => {
+                const div = document.createElement('div');
+                div.className = "flex items-center justify-between bg-white p-3 border border-gray-100 rounded-md shadow-sm";
+                div.innerHTML = `
+                    <div class="flex-1 pr-4">
+                        <span class="font-bold text-indigo-600">${item.begriff}:</span>
+                        <span class="text-gray-600 ml-1 text-sm">${item.bedeutung}</span>
+                    </div>
+                    <button onclick="removeWord('${item.begriff}')" class="text-gray-300 hover:text-red-500 transition px-2 text-xs">Löschen</button>
+                `;
+                listContainer.appendChild(div);
+            });
+        }
+
+        function updateFullUI() {
+            jsonOutput.value = JSON.stringify(data, null, 2);
+            handleSearch();
+        }
+
+        function checkAndAdd() {
+            const bIn = document.getElementById('new-begriff');
+            const dIn = document.getElementById('new-bedeutung');
+            const b = bIn.value.trim();
+            const d = dIn.value.trim();
+            if (!b || !d) return;
+
+            const idx = data.jugendsprache_aktuell.findIndex(i => i.begriff.toLowerCase() === b.toLowerCase());
+            if (idx !== -1) {
+                document.getElementById('dup-word').innerText = b;
+                document.getElementById('old-desc').innerText = data.jugendsprache_aktuell[idx].bedeutung;
+                document.getElementById('new-desc').innerText = d;
+                document.getElementById('duplicate-modal').classList.remove('hidden');
+                document.getElementById('keep-old-btn').onclick = () => closeModal();
+                document.getElementById('keep-new-btn').onclick = () => {
+                    data.jugendsprache_aktuell[idx].bedeutung = d;
+                    closeModal();
+                    updateFullUI();
+                };
+            } else {
+                data.jugendsprache_aktuell.unshift({ begriff: b, bedeutung: d });
+                bIn.value = ''; dIn.value = '';
+                updateFullUI();
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('duplicate-modal').classList.add('hidden');
+            document.getElementById('new-begriff').value = '';
+            document.getElementById('new-bedeutung').value = '';
+        }
+
+        function removeWord(begriff) {
+            data.jugendsprache_aktuell = data.jugendsprache_aktuell.filter(i => i.begriff !== begriff);
+            updateFullUI();
+        }
+
+        function syncFromJson() {
+            try {
+                const parsed = JSON.parse(jsonOutput.value);
+                if (parsed.jugendsprache_aktuell) {
+                    data = parsed;
+                    renderList(data.jugendsprache_aktuell);
+                    wordCount.innerText = `${data.jugendsprache_aktuell.length} Begriffe`;
+                }
+            } catch (e) {}
+        }
+
+        function downloadJSON() {
+            const blob = new Blob([jsonOutput.value], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url; a.download = 'jugendsprache.json'; a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function copyToClipboard() {
+            navigator.clipboard.writeText(jsonOutput.value).then(() => {
+                const btn = event.target;
+                const oldText = btn.innerText;
+                btn.innerText = "Kopiert!";
+                setTimeout(() => btn.innerText = oldText, 2000);
+            });
+        }
+
+        // Init
+        initApiKeys();
+        loadExternalData(); // Automatisches Laden beim Start
+    </script>
+</body>
+</html>
