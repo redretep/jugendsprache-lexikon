@@ -182,8 +182,8 @@
                 <svg class="w-5 h-5 mr-2 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                 Schließen
             </button>
-            <h2 class="text-4xl font-bold mb-2 tracking-tight text-black">Neuankömmlinge</h2>
-            <p class="text-gray-500 mb-16">Chronologische Übersicht der zuletzt hinzugefügten Begriffe.</p>
+            <h2 class="text-4xl font-bold mb-2 tracking-tight text-black">Update-Log</h2>
+            <p class="text-gray-500 mb-16">Übersicht der zuletzt hinzugefügten Begriffe.</p>
             
             <div id="commitList" class="space-y-16">
                 <div class="animate-pulse space-y-6">
@@ -243,7 +243,7 @@
                 
                 commitList.innerHTML = '';
                 
-                for (let i = 0; i < Math.min(commits.length - 1, 3); i++) {
+                for (let i = 0; i < Math.min(commits.length - 1, 8); i++) {
                     const currentCommit = commits[i];
                     const prevCommit = commits[i+1];
                     
