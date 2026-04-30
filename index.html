@@ -12,7 +12,7 @@
             font-family: 'Inter', sans-serif;
             background-color: #fcfcfc;
             color: #1a1a1a;
-            -webkit-font-smoothing: antialiased;Fehler beim Laden des GitHub-Logs.
+            -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
         }
 
@@ -44,7 +44,6 @@
             border-color: #d1d1d1;
         }
 
-        /* Detail & Update View Styles */
         .slide-view {
             position: fixed;
             top: 0;
@@ -106,16 +105,93 @@
             transform: translateY(-1px);
         }
 
-        ::-webkit-scrollbar {
-            width: 6px;
+        /* Group badge on cards */
+        .gruppe-badge {
+            display: inline-flex;
+            align-items: center;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 2px 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            border: 1px solid transparent;
+            user-select: none;
         }
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
+
+        .gruppe-badge:hover {
+            transform: translateY(-1px);
+            filter: brightness(0.92);
         }
-        ::-webkit-scrollbar-thumb {
-            background: #d1d1d1;
-            border-radius: 10px;
+
+        /* Group filter pills */
+        .group-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 5px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1.5px solid #e5e7eb;
+            background: white;
+            color: #555;
+            white-space: nowrap;
         }
+
+        .group-pill:hover {
+            border-color: #bbb;
+            color: #111;
+        }
+
+        .group-pill.active {
+            color: white;
+            border-color: transparent;
+        }
+
+        .group-pill .dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .groups-scroll {
+            display: flex;
+            gap: 6px;
+            overflow-x: auto;
+            padding-bottom: 2px;
+            scrollbar-width: none;
+        }
+        .groups-scroll::-webkit-scrollbar { display: none; }
+
+        /* Group color map — defined via CSS classes */
+        .g-Ausruf        { background: #fef3c7; color: #92400e; border-color: #fde68a; }
+        .g-Ausruf-pill   { background: #d97706; }
+        .g-Anrede        { background: #dbeafe; color: #1e40af; border-color: #bfdbfe; }
+        .g-Anrede-pill   { background: #2563eb; }
+        .g-Adjektiv      { background: #dcfce7; color: #166534; border-color: #bbf7d0; }
+        .g-Adjektiv-pill { background: #16a34a; }
+        .g-Verb          { background: #f3e8ff; color: #6b21a8; border-color: #e9d5ff; }
+        .g-Verb-pill     { background: #7c3aed; }
+        .g-Substantiv    { background: #fee2e2; color: #991b1b; border-color: #fecaca; }
+        .g-Substantiv-pill { background: #dc2626; }
+        .g-Abkürzung     { background: #f1f5f9; color: #475569; border-color: #e2e8f0; }
+        .g-Abkürzung-pill { background: #64748b; }
+        .g-Satz          { background: #fff7ed; color: #9a3412; border-color: #fed7aa; }
+        .g-Satz-pill     { background: #ea580c; }
+        .g-Beleidigung   { background: #fdf2f8; color: #9d174d; border-color: #fbcfe8; }
+        .g-Beleidigung-pill { background: #be185d; }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #d1d1d1; border-radius: 10px; }
     </style>
 </head>
 <body class="min-h-screen">
@@ -151,12 +227,15 @@
                             <div class="toggle-dot absolute left-1 top-1 bg-gray-300 w-4 h-4 rounded-full transition-transform"></div>
                         </div>
                     </label>
-
                     <button id="sortAsc" class="px-4 py-3 bg-white border border-gray-200 rounded-lg text-sm font-medium hover:bg-gray-50 shadow-sm">A-Z</button>
                     <button id="sortDesc" class="px-4 py-3 bg-white border border-gray-200 rounded-lg text-sm font-medium hover:bg-gray-50 shadow-sm">Z-A</button>
                 </div>
             </div>
-            <div id="resultCount" class="mt-4 text-[10px] text-gray-400 font-bold uppercase tracking-[0.2em]">Lade...</div>
+
+            <!-- Group filter pills -->
+            <div class="groups-scroll mt-4" id="groupPills"></div>
+
+            <div id="resultCount" class="mt-3 text-[10px] text-gray-400 font-bold uppercase tracking-[0.2em]">Lade...</div>
         </div>
 
         <div id="dictionaryList" class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
@@ -175,6 +254,17 @@
         </div>
     </div>
 
+    <!-- Group View -->
+    <div id="groupView" class="slide-view">
+        <div class="max-w-3xl mx-auto px-6 py-12">
+            <button onclick="closeSlideView()" class="mb-12 flex items-center text-sm font-medium text-gray-400 hover:text-black transition-colors group">
+                <svg class="w-5 h-5 mr-2 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                Zurück
+            </button>
+            <div id="groupViewContent"></div>
+        </div>
+    </div>
+
     <!-- Update Log Overlay -->
     <div id="updateLogView" class="slide-view">
         <div class="max-w-3xl mx-auto px-6 py-12">
@@ -184,7 +274,6 @@
             </button>
             <h2 class="text-4xl font-bold mb-2 tracking-tight text-black">Update-Log</h2>
             <p class="text-gray-500 mb-16">Übersicht der zuletzt hinzugefügten Begriffe.</p>
-            
             <div id="commitList" class="space-y-16">
                 <div class="animate-pulse space-y-6">
                     <div class="h-3 bg-gray-100 rounded w-1/4"></div>
@@ -202,13 +291,26 @@
         const OFFENSIVE_WORDS_URL = "https://redretep.github.io/jugendsprache-lexikon/anstoessige-begriffe.txt";
         const GITHUB_REPO = "redretep/jugendsprache-lexikon";
         const DATA_FILE = "jugendsprache.json";
-        
+
+        // Group display config
+        const GROUP_CONFIG = {
+            "Ausruf":      { label: "Ausruf",      badgeClass: "g-Ausruf",      pillClass: "g-Ausruf-pill" },
+            "Anrede":      { label: "Anrede",      badgeClass: "g-Anrede",      pillClass: "g-Anrede-pill" },
+            "Adjektiv":    { label: "Adjektiv",    badgeClass: "g-Adjektiv",    pillClass: "g-Adjektiv-pill" },
+            "Verb":        { label: "Verb",        badgeClass: "g-Verb",        pillClass: "g-Verb-pill" },
+            "Substantiv":  { label: "Substantiv",  badgeClass: "g-Substantiv",  pillClass: "g-Substantiv-pill" },
+            "Abkürzung":   { label: "Abkürzung",   badgeClass: "g-Abkürzung",   pillClass: "g-Abkürzung-pill" },
+            "Satz/Phrase": { label: "Satz",        badgeClass: "g-Satz",        pillClass: "g-Satz-pill" },
+            "Beleidigung": { label: "Beleidigung", badgeClass: "g-Beleidigung", pillClass: "g-Beleidigung-pill" },
+        };
+
         let apiKeys = [];
         let apiKeyIndex = -1;
         let dictionaryData = [];
         let filteredData = [];
         let offensiveWords = [];
-        
+        let activeGroup = null;
+
         const dictionaryList = document.getElementById('dictionaryList');
         const searchInput = document.getElementById('searchInput');
         const filterToggle = document.getElementById('filterToggle');
@@ -216,10 +318,104 @@
         const sortAscBtn = document.getElementById('sortAsc');
         const sortDescBtn = document.getElementById('sortDesc');
         const detailView = document.getElementById('detailView');
+        const groupView = document.getElementById('groupView');
         const updateLogView = document.getElementById('updateLogView');
         const detailContent = document.getElementById('detailContent');
         const commitList = document.getElementById('commitList');
+        const groupPillsContainer = document.getElementById('groupPills');
+        const groupViewContent = document.getElementById('groupViewContent');
 
+        // ---- Group Helpers ----
+        function getGroupCfg(gruppe) {
+            if (!gruppe) return null;
+            // normalize "Satz/Phrase" variants
+            const key = Object.keys(GROUP_CONFIG).find(k => gruppe.startsWith(k.split('/')[0])) || gruppe;
+            return GROUP_CONFIG[key] || null;
+        }
+
+        function groupBadgeHTML(gruppe, clickable = true) {
+            const cfg = getGroupCfg(gruppe);
+            if (!cfg) return '';
+            const label = cfg.label;
+            const cls = cfg.badgeClass;
+            if (clickable) {
+                return `<span class="gruppe-badge ${cls}" onclick="event.stopPropagation(); openGroupView('${gruppe}')" title="Alle ${label}-Begriffe anzeigen">${label}</span>`;
+            }
+            return `<span class="gruppe-badge ${cls}">${label}</span>`;
+        }
+
+        function buildGroupPills() {
+            // "Alle" pill
+            groupPillsContainer.innerHTML = '';
+            const allPill = document.createElement('button');
+            allPill.className = 'group-pill' + (activeGroup === null ? ' active' : '');
+            allPill.style.cssText = activeGroup === null ? 'background:#111;border-color:#111;color:white;' : '';
+            allPill.innerHTML = 'Alle';
+            allPill.onclick = () => { activeGroup = null; buildGroupPills(); applyFilters(); };
+            groupPillsContainer.appendChild(allPill);
+
+            Object.entries(GROUP_CONFIG).forEach(([key, cfg]) => {
+                const count = dictionaryData.filter(d => d.gruppe && d.gruppe.startsWith(key.split('/')[0])).length;
+                if (!count) return;
+                const pill = document.createElement('button');
+                const isActive = activeGroup === key;
+                pill.className = 'group-pill' + (isActive ? ' active ' + cfg.pillClass : '');
+                if (isActive) pill.style.cssText = '';
+                pill.innerHTML = `<span class="dot" style="background:${isActive ? 'rgba(255,255,255,0.7)' : cfg.pillClass.includes('pill') ? '' : '#999'}"></span>${cfg.label} <span style="opacity:0.6;font-weight:400">${count}</span>`;
+
+                // set dot color dynamically
+                const dot = pill.querySelector('.dot');
+                if (!isActive) {
+                    const colorMap = {
+                        "g-Ausruf-pill":"#d97706","g-Anrede-pill":"#2563eb","g-Adjektiv-pill":"#16a34a",
+                        "g-Verb-pill":"#7c3aed","g-Substantiv-pill":"#dc2626","g-Abkürzung-pill":"#64748b",
+                        "g-Satz-pill":"#ea580c","g-Beleidigung-pill":"#be185d"
+                    };
+                    dot.style.background = colorMap[cfg.pillClass] || '#999';
+                }
+
+                pill.onclick = () => { activeGroup = key; buildGroupPills(); applyFilters(); };
+                groupPillsContainer.appendChild(pill);
+            });
+        }
+
+        // ---- Group View (slide panel) ----
+        function openGroupView(gruppe) {
+            const normalized = Object.keys(GROUP_CONFIG).find(k => gruppe.startsWith(k.split('/')[0])) || gruppe;
+            const cfg = getGroupCfg(gruppe);
+            const label = cfg ? cfg.label : gruppe;
+            const words = dictionaryData.filter(d => d.gruppe && d.gruppe.startsWith(normalized.split('/')[0]));
+            words.sort((a, b) => a.begriff.localeCompare(b.begriff));
+
+            groupViewContent.innerHTML = `
+                <div class="flex items-center gap-3 mb-3">
+                    ${groupBadgeHTML(gruppe, false)}
+                    <h2 class="text-4xl font-bold tracking-tight text-black">${label}</h2>
+                </div>
+                <p class="text-gray-400 text-sm mb-12">${words.length} Begriffe in dieser Gruppe</p>
+                <div class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+                    ${words.map(item => `
+                        <div class="word-card p-6 group" onclick="closeGroupAndOpenWord('${encodeURIComponent(item.begriff)}')">
+                            <div class="flex items-center justify-between mb-1">
+                                <h2 class="text-lg font-semibold tracking-tight">${item.begriff}</h2>
+                                <svg class="w-4 h-4 text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                            </div>
+                            <p class="text-gray-500 truncate text-sm">${item.bedeutung}</p>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+
+            groupView.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeGroupAndOpenWord(encodedBegriff) {
+            groupView.classList.remove('active');
+            setTimeout(() => openWordDetail(decodeURIComponent(encodedBegriff)), 50);
+        }
+
+        // ---- Init ----
         async function initApiKeys() {
             try {
                 const res = await fetch(API_KEYS_URL);
@@ -240,24 +436,18 @@
             try {
                 const commitsRes = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/commits?path=${DATA_FILE}`);
                 const commits = await commitsRes.json();
-                
                 commitList.innerHTML = '';
-                
                 for (let i = 0; i < Math.min(commits.length - 1, 2); i++) {
                     const currentCommit = commits[i];
                     const prevCommit = commits[i+1];
-                    
                     const date = new Date(currentCommit.commit.author.date).toLocaleDateString('de-DE', { day: '2-digit', month: 'long', year: 'numeric' });
-                    
                     const [currFile, prevFile] = await Promise.all([
                         fetch(`https://raw.githubusercontent.com/${GITHUB_REPO}/${currentCommit.sha}/${DATA_FILE}`).then(r => r.json()),
                         fetch(`https://raw.githubusercontent.com/${GITHUB_REPO}/${prevCommit.sha}/${DATA_FILE}`).then(r => r.json())
                     ]);
-
                     const currWords = currFile.jugendsprache_aktuell.map(j => j.begriff);
                     const prevWords = prevFile.jugendsprache_aktuell.map(j => j.begriff);
                     const newWords = currWords.filter(w => !prevWords.includes(w));
-
                     if (newWords.length > 0) {
                         const div = document.createElement('div');
                         div.className = 'relative pl-10 border-l border-gray-200';
@@ -271,11 +461,9 @@
                         commitList.appendChild(div);
                     }
                 }
-                
                 if (commitList.innerHTML === '') {
                     commitList.innerHTML = '<p class="text-gray-400 italic">Keine neuen Wort-Ergänzungen in den letzten Commits gefunden.</p>';
                 }
-
             } catch(e) {
                 commitList.innerHTML = '<p class="text-red-400 text-sm">Fehler beim Laden des GitHub-Logs.</p>';
             }
@@ -290,7 +478,9 @@
         function closeSlideView() {
             detailView.classList.remove('active');
             updateLogView.classList.remove('active');
+            groupView.classList.remove('active');
             document.body.style.overflow = '';
+            if (window.location.hash) history.pushState(null, '', window.location.pathname);
         }
 
         function getNextApiKey() {
@@ -332,6 +522,7 @@
                 const json = await response.json();
                 dictionaryData = json.jugendsprache_aktuell || [];
                 dictionaryData.sort((a, b) => a.begriff.localeCompare(b.begriff));
+                buildGroupPills();
                 applyFilters();
                 handleHashChange();
             } catch (error) {
@@ -345,7 +536,12 @@
             filteredData = dictionaryData.filter(item => {
                 const matches = item.begriff.toLowerCase().includes(term) || item.bedeutung.toLowerCase().includes(term);
                 if (!matches) return false;
-                return isFilterActive ? !offensiveWords.includes(item.begriff.toLowerCase()) : true;
+                if (isFilterActive && offensiveWords.includes(item.begriff.toLowerCase())) return false;
+                if (activeGroup !== null) {
+                    const normalizedKey = activeGroup.split('/')[0];
+                    if (!item.gruppe || !item.gruppe.startsWith(normalizedKey)) return false;
+                }
+                return true;
             });
             renderDictionary(filteredData);
         }
@@ -361,10 +557,14 @@
                 const card = document.createElement('div');
                 card.className = 'word-card p-8 group';
                 card.onclick = () => openWordDetail(item.begriff);
+                const badge = item.gruppe ? groupBadgeHTML(item.gruppe) : '';
                 card.innerHTML = `
                     <div class="flex items-center justify-between mb-2">
-                        <h2 class="text-xl font-semibold tracking-tight">${item.begriff}</h2>
-                        <svg class="w-5 h-5 text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        <div class="flex items-center gap-2 flex-wrap">
+                            <h2 class="text-xl font-semibold tracking-tight">${item.begriff}</h2>
+                            ${badge}
+                        </div>
+                        <svg class="w-5 h-5 text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                     </div>
                     <p class="text-gray-500 truncate text-sm font-medium">${item.bedeutung}</p>
                 `;
@@ -387,8 +587,14 @@
             const item = dictionaryData.find(i => i.begriff === begriff);
             if (!item) return;
 
+            const badge = item.gruppe ? `
+                <div class="mb-6">
+                    ${groupBadgeHTML(item.gruppe)}
+                </div>` : '';
+
             detailContent.innerHTML = `
-                <h1 class="text-6xl font-bold mb-6 tracking-tighter text-black">${item.begriff}</h1>
+                <h1 class="text-6xl font-bold mb-4 tracking-tighter text-black">${item.begriff}</h1>
+                ${badge}
                 <p class="text-2xl text-gray-600 mb-16 leading-relaxed font-light">${item.bedeutung}</p>
                 <div id="groqSection" class="border-t border-gray-100 pt-16">
                     <div class="animate-pulse space-y-4">
