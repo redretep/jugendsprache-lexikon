@@ -1,772 +1,959 @@
 {
   "jugendsprache_aktuell": [
     {
-      "begriff": "Ragebaiten",
-      "bedeutung": "Jemanden solange nerven/ärgern bis er ausrastet. (Eng: Wutköder)"
-    },
-    {
       "begriff": "Put the fries in the bag",
-      "bedeutung": "Ausruf: Lass los oder komm zum Punkt"
+      "bedeutung": "Ausruf: Lass los oder komm zum Punkt.",
+      "gruppe": "Ausruf"
     },
     {
       "begriff": "Pack die Fritten in die Tüte",
-      "bedeutung": "Ausruf: Lass los oder komm zum Punkt"
+      "bedeutung": "Ausruf: Lass los oder komm zum Punkt.",
+      "gruppe": "Ausruf"
     },
     {
-      "begriff": "bag haben",
-      "bedeutung": "Viel Geld oder Reichtum besitzen."
+      "begriff": "Bag haben",
+      "bedeutung": "Viel Geld oder Reichtum besitzen.",
+      "gruppe": "Satz/Phrase"
     },
     {
       "begriff": "Top 10 ...",
-      "bedeutung": "Auflistung, zB Top 10 Sachen die nie passiert sind, Top 10 Sigma Momente, bezogen auf YouTube Titel"
+      "bedeutung": "Auflistung, z.B. Top 10 Sachen die nie passiert sind, Top 10 Sigma Momente, bezogen auf YouTube-Titel.",
+      "gruppe": "Satz/Phrase"
     },
     {
-      "begriff": "ass (Adjektiv)",
-      "bedeutung": "schlecht"
+      "begriff": "Ass",
+      "bedeutung": "Schlecht.",
+      "gruppe": "Adjektiv"
     },
     {
-      "begriff": "cooked sein",
-      "bedeutung": "komplett verloren/erledigt sein. Bsp: “bro is cooked” = der ist erledigt"
+      "begriff": "Cooked sein",
+      "bedeutung": "Komplett verloren/erledigt sein. Bsp: \"Bro is cooked\" = der ist erledigt.",
+      "gruppe": "Satz/Phrase"
     },
     {
-      "begriff": "gekocht sein",
-      "bedeutung": "eng: being cooked, komplett verloren/erledigt sein. Bsp: “bro is cooked” = der ist erledigt"
+      "begriff": "Gekocht sein",
+      "bedeutung": "Eng: being cooked, komplett verloren/erledigt sein. Bsp: \"Bro is cooked\" = der ist erledigt.",
+      "gruppe": "Satz/Phrase"
     },
     {
       "begriff": "Ate",
-      "bedeutung": "Komplett abgeliefert"
+      "bedeutung": "Komplett abgeliefert.",
+      "gruppe": "Adjektiv"
     },
     {
-      "begriff": "touch grass",
-      "bedeutung": "Raus aus dem Internet, in die Natur."
+      "begriff": "Touch grass",
+      "bedeutung": "Raus aus dem Internet, in die Natur.",
+      "gruppe": "Ausruf"
     },
     {
-      "begriff": "caught in 4k",
-      "bedeutung": "ertappt werden."
+      "begriff": "Caught in 4K",
+      "bedeutung": "Ertappt werden.",
+      "gruppe": "Satz/Phrase"
     },
     {
       "begriff": "POV",
-      "bedeutung": "Point of View, meist in sozialen Medien verwendet."
+      "bedeutung": "Point of View, meist in sozialen Medien verwendet.",
+      "gruppe": "Abkürzung"
     },
     {
-      "begriff": "corny",
-      "bedeutung": "Albern, peinlich oder übertrieben kitschig."
+      "begriff": "Corny",
+      "bedeutung": "Albern, peinlich oder übertrieben kitschig.",
+      "gruppe": "Adjektiv"
     },
     {
       "begriff": "Glow-Down",
-      "bedeutung": "Sich optisch und innerlich verschlechtern, negativ verändern."
+      "bedeutung": "Sich optisch und innerlich verschlechtern, negativ verändern.",
+      "gruppe": "Substantiv"
     },
     {
-      "begriff": "game haben",
-      "bedeutung": "gut flirten oder gut ankommen beim anderen Geschlecht"
+      "begriff": "Game haben",
+      "bedeutung": "Gut flirten oder gut ankommen beim anderen Geschlecht.",
+      "gruppe": "Satz/Phrase"
     },
     {
-      "begriff": "ball knowledge (haben)",
-      "bedeutung": "Jemand ist sehr gut über Fussball oder Basketball informiert"
+      "begriff": "Ball knowledge (haben)",
+      "bedeutung": "Jemand ist sehr gut über Fußball oder Basketball informiert.",
+      "gruppe": "Satz/Phrase"
     },
     {
       "begriff": "Chaya",
-      "bedeutung": "Herabwürdigender Begriff für eine gutaussehende Frau oder bekräftigender Begriff für eine selbstbewusste Frau"
+      "bedeutung": "Herabwürdigender Begriff für eine gutaussehende Frau oder bekräftigender Begriff für eine selbstbewusste Frau.",
+      "gruppe": "Anrede"
     },
     {
       "begriff": "Playboy",
-      "bedeutung": "Mann, der sehr viele Frauen klarmacht."
+      "bedeutung": "Mann, der sehr viele Frauen klarmacht.",
+      "gruppe": "Substantiv"
     },
     {
-      "begriff": "player",
-      "bedeutung": "Mann, der sehr viele Frauen klarmacht."
+      "begriff": "Player",
+      "bedeutung": "Mann, der sehr viele Frauen klarmacht.",
+      "gruppe": "Substantiv"
     },
     {
-      "begriff": "plotten",
-      "bedeutung": "Machen oder planen von etwas."
+      "begriff": "Plotten",
+      "bedeutung": "Machen oder planen von etwas.",
+      "gruppe": "Verb"
     },
     {
-      "begriff": "crash out gehen",
-      "bedeutung": "ausrasten"
+      "begriff": "Crash out gehen",
+      "bedeutung": "Ausrasten.",
+      "gruppe": "Verb"
     },
     {
-      "begriff": "deep",
-      "bedeutung": "wichtig"
+      "begriff": "Deep",
+      "bedeutung": "Wichtig.",
+      "gruppe": "Adjektiv"
     },
     {
       "begriff": "Talken",
-      "bedeutung": "Reden, sprechen, miteinander plaudern."
+      "bedeutung": "Reden, sprechen, miteinander plaudern.",
+      "gruppe": "Verb"
     },
     {
       "begriff": "Scam",
-      "bedeutung": "betrug oder eine enttäuschende sache, die nicht hält, was sie verspricht."
+      "bedeutung": "Betrug oder eine enttäuschende Sache, die nicht hält, was sie verspricht.",
+      "gruppe": "Substantiv"
     },
     {
       "begriff": "Random",
-      "bedeutung": "willkürlich, unerwartet oder seltsam in einem bestimmten kontext."
+      "bedeutung": "Willkürlich, unerwartet oder seltsam in einem bestimmten Kontext.",
+      "gruppe": "Adjektiv"
     },
     {
       "begriff": "Absolute Cinema",
-      "bedeutung": "ausdruck für etwas extrem beeindruckendes oder einen perfekten moment."
+      "bedeutung": "Ausdruck für etwas extrem Beeindruckendes oder einen perfekten Moment.",
+      "gruppe": "Ausruf"
     },
     {
       "begriff": "Fiebertraum",
-      "bedeutung": "Eine ungewöhnliche oder komische Situation"
+      "bedeutung": "Eine ungewöhnliche oder komische Situation.",
+      "gruppe": "Substantiv"
     },
     {
-      "begriff": "bra",
-      "bedeutung": "Kurzform für \"Bruder\", zeigt Freundschaft."
+      "begriff": "Bra",
+      "bedeutung": "Kurzform für \"Bruder\", zeigt Freundschaft.",
+      "gruppe": "Anrede"
     },
     {
       "begriff": "Geredet wie ein Löwe",
-      "bedeutung": "Ausruf der Zustimmung. siehe \"rede\""
+      "bedeutung": "Ausruf der Zustimmung, siehe auch \"Rede\".",
+      "gruppe": "Ausruf"
     },
     {
       "begriff": "Bre",
-      "bedeutung": "Bruder, Kumpel, Freund."
+      "bedeutung": "Bruder, Kumpel, Freund.",
+      "gruppe": "Anrede"
     },
     {
-      "begriff": "wallah",
-      "bedeutung": "Ehrenwort, Versprechen, ich schwöre es."
+      "begriff": "Wallah",
+      "bedeutung": "Ehrenwort, Versprechen, ich schwöre es.",
+      "gruppe": "Ausruf"
     },
     {
       "begriff": "Schere (erheben)",
-      "bedeutung": "benutzt nachdem man etwas Dummes getan hat oder etwas, das nicht wie geplant verlief"
+      "bedeutung": "Benutzt, nachdem man etwas Dummes getan hat oder etwas, das nicht wie geplant verlief.",
+      "gruppe": "Ausruf"
     },
     {
       "begriff": "Förma",
-      "bedeutung": "Kurzform für „Die Firma an die Wand fahren“, genutztwird, wenn etwas Dummes oder Blödes passiert."
+      "bedeutung": "Kurzform für „Die Firma an die Wand fahren", genutzt, wenn etwas Dummes oder Blödes passiert.",
+      "gruppe": "Ausruf"
     },
     {
-      "begriff": "67 / six seven",
-      "bedeutung": "Six Seven (67) ist ein virales Internet Meme, welches keinen Inhalt besitzt."
+      "begriff": "67 / Six Seven",
+      "bedeutung": "Six Seven (67) ist ein virales Internet-Meme, welches keinen Inhalt besitzt.",
+      "gruppe": "Abkürzung"
     },
     {
-      "begriff": "peak",
-      "bedeutung": "Etwas ist perfekt oder sehr gut."
+      "begriff": "Peak",
+      "bedeutung": "Etwas ist perfekt oder sehr gut.",
+      "gruppe": "Adjektiv"
     },
     {
       "begriff": "10/10",
-      "bedeutung": "Ein/e extrem attraktive/r Frau/Mann mit perfektem Style."
+      "bedeutung": "Ein/e extrem attraktive/r Frau/Mann mit perfektem Style.",
+      "gruppe": "Adjektiv"
     },
     {
       "begriff": "Spast",
-      "bedeutung": "abwertendender Begriff für behinderte Menschen"
+      "bedeutung": "Abwertender Begriff für behinderte Menschen.",
+      "gruppe": "Beleidigung"
     },
     {
       "begriff": "Thot",
-      "bedeutung": "abwertender Begriff für eine Frau, die als sexuell freizügig oder provokativ gilt. (that hoe over there)"
+      "bedeutung": "Abwertender Begriff für eine Frau, die als sexuell freizügig oder provokativ gilt. (That hoe over there)",
+      "gruppe": "Beleidigung"
     },
     {
-      "begriff": "gefriendzoned werden",
-      "bedeutung": "Romantisches Interesse wird lediglich mit Freundschaft erwidert."
+      "begriff": "Gefriendzoned werden",
+      "bedeutung": "Romantisches Interesse wird lediglich mit Freundschaft erwidert.",
+      "gruppe": "Verb"
     },
     {
       "begriff": "Iceolator",
-      "bedeutung": "Mit Eiswasser und Sieben extrahiertes, hochreines Cannabis-Harzkonzentrat."
+      "bedeutung": "Mit Eiswasser und Sieben extrahiertes, hochreines Cannabis-Harzkonzentrat.",
+      "gruppe": "Substantiv"
     },
     {
-      "begriff": "yuh",
-      "bedeutung": "Ausdruck für „Ja“ oder zur Bestätigung."
+      "begriff": "Yuh",
+      "bedeutung": "Ausdruck für „Ja" oder zur Bestätigung.",
+      "gruppe": "Ausruf"
     },
     {
       "begriff": "Haram",
-      "bedeutung": "Alles, was nach islamischem Recht religiös verboten ist."
+      "bedeutung": "Alles, was nach islamischem Recht religiös verboten ist.",
+      "gruppe": "Adjektiv"
     },
     {
       "begriff": "Hayat",
-      "bedeutung": "Arabisch/Türkisch für „Leben“; oft Ausdruck für das „gute Leben“."
+      "bedeutung": "Arabisch/Türkisch für „Leben"; oft Ausdruck für das „gute Leben".",
+      "gruppe": "Substantiv"
     },
     {
       "begriff": "Lean",
-      "bedeutung": "Mischgetränk aus codeinhaltigem Hustensaft, Limonade und oft Bonbons."
+      "bedeutung": "Mischgetränk aus codeinhaltigem Hustensaft, Limonade und oft Bonbons.",
+      "gruppe": "Substantiv"
     },
     {
       "begriff": "Jibbit",
-      "bedeutung": "Handgedrehte Zigarette mit Cannabis (Marihuana oder Haschisch), meist mit Tabak vermischt. Siehe auch Joint"
+      "bedeutung": "Handgedrehte Zigarette mit Cannabis (Marihuana oder Haschisch), meist mit Tabak vermischt. Siehe auch Joint.",
+      "gruppe": "Substantiv"
     },
     {
       "begriff": "Jiggo",
-      "bedeutung": "Jugendsprache für einen engen Freund, Kumpel oder Bruder."
+      "bedeutung": "Jugendsprache für einen engen Freund, Kumpel oder Bruder.",
+      "gruppe": "Anrede"
     },
     {
       "begriff": "Tweaker",
-      "bedeutung": "Verrückter, Drogenabhängiger, Obdachloser"
+      "bedeutung": "Verrückter, Drogenabhängiger, Obdachloser.",
+      "gruppe": "Substantiv"
     },
     {
-      "begriff": "geeked sein",
-      "bedeutung": "Extrem euphorisch, aufgeregt oder unter Drogeneinfluss völlig aufgekratzt sein."
+      "begriff": "Geeked sein",
+      "bedeutung": "Extrem euphorisch, aufgeregt oder unter Drogeneinfluss völlig aufgekratzt sein.",
+      "gruppe": "Adjektiv"
     },
     {
       "begriff": "Junkie",
-      "bedeutung": "Bezeichnung für eine schwer drogenabhängige Person."
+      "bedeutung": "Bezeichnung für eine schwer drogenabhängige Person.",
+      "gruppe": "Substantiv"
     },
     {
       "begriff": "Lak",
-      "bedeutung": "Jugendsprache für „Alter“, abgeleitet vom türkischen Wort „lan“."
+      "bedeutung": "Jugendsprache für „Alter", abgeleitet vom türkischen Wort „lan".",
+      "gruppe": "Anrede"
     },
     {
       "begriff": "187",
-      "bedeutung": "US-Polizeicode für Mord sowie Name einer Hamburger Rap-Gruppe."
+      "bedeutung": "US-Polizeicode für Mord sowie Name einer Hamburger Rap-Gruppe.",
+      "gruppe": "Abkürzung"
     },
     {
       "begriff": "Ya Salame",
-      "bedeutung": "Arabischer Ausruf für Begeisterung oder Erstaunen; etwa „Wow“."
+      "bedeutung": "Arabischer Ausruf für Begeisterung oder Erstaunen; etwa „Wow".",
+      "gruppe": "Ausruf"
     },
     {
       "begriff": "Youngin",
-      "bedeutung": "Bezeichnung für eine junge Person oder einen Jugendlichen, der Drogen weiterverkauft."
+      "bedeutung": "Bezeichnung für eine junge Person oder einen Jugendlichen, der Drogen weiterverkauft.",
+      "gruppe": "Substantiv"
     },
     {
       "begriff": "Haps",
-      "bedeutung": "Gefängnis"
+      "bedeutung": "Gefängnis.",
+      "gruppe": "Substantiv"
     },
     {
-      "begriff": "seinen shoot shooten",
-      "bedeutung": "Mutig die Initiative ergreifen und sein Glück bei jemandem versuchen."
+      "begriff": "Seinen Shoot shooten",
+      "bedeutung": "Mutig die Initiative ergreifen und sein Glück bei jemandem versuchen.",
+      "gruppe": "Verb"
     },
     {
       "begriff": "Opps",
-      "bedeutung": "Slang-Begriff für Feinde oder Rivalen (Kurzform von „Opposition“)."
+      "bedeutung": "Slang-Begriff für Feinde oder Rivalen (Kurzform von „Opposition").",
+      "gruppe": "Substantiv"
     },
     {
-      "begriff": "snappen",
-      "bedeutung": "Bilder oder Videos über die App Snapchat versenden."
+      "begriff": "Snappen",
+      "bedeutung": "Bilder oder Videos über die App Snapchat versenden.",
+      "gruppe": "Verb"
     },
     {
-      "begriff": "baddie",
-      "bedeutung": "Selbstbewusste, attraktive Frau mit markantem Style und starker Ausstrahlung."
+      "begriff": "Baddie",
+      "bedeutung": "Selbstbewusste, attraktive Frau mit markantem Style und starker Ausstrahlung.",
+      "gruppe": "Substantiv"
     },
     {
-      "begriff": "soft",
-      "bedeutung": "Weich, sanft, nachgiebig oder auf Software und soziale Kompetenzen bezogen."
+      "begriff": "Soft",
+      "bedeutung": "Weich, sanft, nachgiebig.",
+      "gruppe": "Adjektiv"
     },
     {
       "begriff": "Xans",
-      "bedeutung": "Abkürzung für Xanax; ein verschreibungspflichtiges Beruhigungsmittel, das oft missbräuchlich als Droge konsumiert wird."
+      "bedeutung": "Abkürzung für Xanax; ein verschreibungspflichtiges Beruhigungsmittel, das oft missbräuchlich als Droge konsumiert wird.",
+      "gruppe": "Substantiv"
     },
     {
-      "begriff": "kirkified",
-      "bedeutung": "Das Gesicht vom Politiker Charlie Kirk auf das Gesicht der betroffen Person überlagern"
+      "begriff": "Kirkified",
+      "bedeutung": "Das Gesicht vom Politiker Charlie Kirk auf das Gesicht der betroffenen Person überlagern.",
+      "gruppe": "Verb"
     },
     {
-      "begriff": "type shit",
-      "bedeutung": "Zustimmung zu einer Aussage oder Beschreibung einer bestimmten Art von Vibe oder Situation."
+      "begriff": "Type shit",
+      "bedeutung": "Zustimmung zu einer Aussage oder Beschreibung einer bestimmten Art von Vibe oder Situation.",
+      "gruppe": "Ausruf"
     },
     {
-      "begriff": "bands",
-      "bedeutung": "Bezeichnet viel Geld, insbesondere Geldbündel oder Tausender-Beträge."
+      "begriff": "Bands",
+      "bedeutung": "Bezeichnet viel Geld, insbesondere Geldbündel oder Tausender-Beträge.",
+      "gruppe": "Substantiv"
     },
     {
       "begriff": "Hood",
-      "bedeutung": "Das eigene Wohnviertel, die Nachbarschaft oder der Kiez, in dem man lebt."
+      "bedeutung": "Das eigene Wohnviertel, die Nachbarschaft oder der Kiez, in dem man lebt.",
+      "gruppe": "Substantiv"
     },
     {
       "begriff": "Piç",
-      "bedeutung": "Türkisch für „Bastard“; Beleidigung für eine hinterhältige Person, einen Mistkerl oder ein Arschloch."
+      "bedeutung": "Türkisch für „Bastard"; Beleidigung für eine hinterhältige Person, einen Mistkerl oder ein Arschloch.",
+      "gruppe": "Beleidigung"
     },
     {
       "begriff": "Abi",
-      "bedeutung": "Türkisch für „älterer Bruder“; respektvolle Bezeichnung für einen Freund oder eine Respektsperson."
+      "bedeutung": "Türkisch für „älterer Bruder"; respektvolle Bezeichnung für einen Freund oder eine Respektsperson.",
+      "gruppe": "Anrede"
     },
     {
       "begriff": "Habis",
-      "bedeutung": "Gefängnis"
+      "bedeutung": "Gefängnis.",
+      "gruppe": "Substantiv"
     },
     {
       "begriff": "Shabab/es",
-      "bedeutung": "Arabisch für „Jungs“; bezeichnet enge Freunde, Kumpels oder die eigene Clique."
+      "bedeutung": "Arabisch für „Jungs"; bezeichnet enge Freunde, Kumpels oder die eigene Clique.",
+      "gruppe": "Anrede"
     },
     {
-      "begriff": "dope",
-      "bedeutung": "Beschreibt etwas als extrem cool, hochwertig oder großartig. Ursprünglich ein Begriff für Drogen."
+      "begriff": "Dope",
+      "bedeutung": "Beschreibt etwas als extrem cool, hochwertig oder großartig. Ursprünglich ein Begriff für Drogen.",
+      "gruppe": "Adjektiv"
     },
     {
       "begriff": "Peps",
-      "bedeutung": "Umgangssprachliche Bezeichnung für Amphetamine (Speed), bekannt durch das virale „Haben wir noch Peps?“-Video."
+      "bedeutung": "Umgangssprachliche Bezeichnung für Amphetamine (Speed), bekannt durch das virale „Haben wir noch Peps?"-Video.",
+      "gruppe": "Substantiv"
     },
     {
-      "begriff": "rippen",
-      "bedeutung": "Jemanden bestehlen, abziehen oder bei einem Geschäft betrügen."
+      "begriff": "Rippen",
+      "bedeutung": "Jemanden bestehlen, abziehen oder bei einem Geschäft betrügen.",
+      "gruppe": "Verb"
     },
     {
       "begriff": "Hoe",
-      "bedeutung": "Prostituierte"
+      "bedeutung": "Prostituierte.",
+      "gruppe": "Beleidigung"
     },
     {
-      "begriff": "rat",
-      "bedeutung": "Ein Verräter, eine Petze oder jemand, der extrem viel Zeit an einem Ort verbringt."
+      "begriff": "Rat",
+      "bedeutung": "Ein Verräter, eine Petze oder jemand, der extrem viel Zeit an einem Ort verbringt.",
+      "gruppe": "Beleidigung"
     },
     {
       "begriff": "Can / Canim",
-      "bedeutung": "Türkisch für „meine Seele“. Herzliches Kosewort für enge Freunde oder den Partner."
+      "bedeutung": "Türkisch für „meine Seele". Herzliches Kosewort für enge Freunde oder den Partner.",
+      "gruppe": "Anrede"
     },
     {
       "begriff": "Joint",
-      "bedeutung": "Handgedrehte Zigarette mit Cannabis (Marihuana oder Haschisch), meist mit Tabak vermischt."
+      "bedeutung": "Handgedrehte Zigarette mit Cannabis (Marihuana oder Haschisch), meist mit Tabak vermischt.",
+      "gruppe": "Substantiv"
     },
     {
       "begriff": "Broski",
-      "bedeutung": "Bezeichnung Jüngere Person (kleiner Bruder)"
+      "bedeutung": "Bezeichnung für eine jüngere Person (kleiner Bruder).",
+      "gruppe": "Anrede"
     },
     {
       "begriff": "Homie",
-      "bedeutung": "Ein enger Freund, Kumpel oder loyaler Weggefährte aus dem eigenen Umfeld."
+      "bedeutung": "Ein enger Freund, Kumpel oder loyaler Weggefährte aus dem eigenen Umfeld.",
+      "gruppe": "Anrede"
     },
     {
       "begriff": "TN / Haifisch Nikes",
-      "bedeutung": "beliebte Sneaker in der Gangster Szene"
+      "bedeutung": "Beliebte Sneaker in der Gangster-Szene.",
+      "gruppe": "Substantiv"
     },
     {
       "begriff": "Nonchalant",
-      "bedeutung": "Beschreibt eine betont lässige, gleichgültige oder extrem coole Art und Weise."
+      "bedeutung": "Beschreibt eine betont lässige, gleichgültige oder extrem coole Art und Weise.",
+      "gruppe": "Adjektiv"
     },
     {
       "begriff": "361",
-      "bedeutung": "Code für Berlin-Kreuzberg (61), geprägt durch Rapper Luciano als Symbol für Herkunft und Lifestyle."
+      "bedeutung": "Code für Berlin-Kreuzberg (61), geprägt durch Rapper Luciano als Symbol für Herkunft und Lifestyle.",
+      "gruppe": "Abkürzung"
     },
     {
-      "begriff": "steppen",
-      "bedeutung": "Sich an einen Ort bewegen, irgendwohin gehen oder entspannt laufen."
+      "begriff": "Steppen",
+      "bedeutung": "Sich an einen Ort bewegen, irgendwohin gehen oder entspannt laufen.",
+      "gruppe": "Verb"
     },
     {
       "begriff": "Haze",
-      "bedeutung": "Bezeichnung für potente Cannabissorten oder allgemein als Slangbegriff für Marihuana und Gras."
+      "bedeutung": "Bezeichnung für potente Cannabissorten oder allgemein als Slangbegriff für Marihuana und Gras.",
+      "gruppe": "Substantiv"
     },
     {
       "begriff": "Snus",
-      "bedeutung": "Kleine Nikotin- oder Tabakbeutel, die für den Kick unter die Oberlippe geklemmt werden."
+      "bedeutung": "Kleine Nikotin- oder Tabakbeutel, die für den Kick unter die Oberlippe geklemmt werden.",
+      "gruppe": "Substantiv"
     },
     {
       "begriff": "Kanake",
-      "bedeutung": "Ursprünglich rassistisches Schimpfwort, heute oft identitätsstiftende Selbstbezeichnung von Jugendlichen mit Migrationshintergrund."
+      "bedeutung": "Ursprünglich rassistisches Schimpfwort, heute oft identitätsstiftende Selbstbezeichnung von Jugendlichen mit Migrationshintergrund.",
+      "gruppe": "Substantiv"
     },
     {
-      "begriff": "high sein",
-      "bedeutung": "Berauscht durch Drogen oder im Zustand extremer, euphorischer Glücksgefühle sein."
+      "begriff": "High sein",
+      "bedeutung": "Berauscht durch Drogen oder im Zustand extremer, euphorischer Glücksgefühle sein.",
+      "gruppe": "Adjektiv"
     },
     {
       "begriff": "Ott",
-      "bedeutung": "Bezeichnet Marihuana oder Cannabis; abgeleitet vom türkischen Wort „ot“ für Kraut oder Gras."
+      "bedeutung": "Bezeichnet Marihuana oder Cannabis; abgeleitet vom türkischen Wort „ot" für Kraut oder Gras.",
+      "gruppe": "Substantiv"
     },
     {
       "begriff": "GOAT",
-      "bedeutung": "Greatest Of All Time, oft genutzt in der Sport-Branche"
+      "bedeutung": "Greatest Of All Time, oft genutzt in der Sport-Branche.",
+      "gruppe": "Abkürzung"
     },
     {
       "begriff": "Zivi",
-      "bedeutung": "Abfällige Bezeichnung für eine unterwürfige Person, die anderen wie ein Laufbursche dient."
+      "bedeutung": "Abfällige Bezeichnung für eine unterwürfige Person, die anderen wie ein Laufbursche dient.",
+      "gruppe": "Beleidigung"
     },
     {
       "begriff": "GHG",
-      "bedeutung": "Abkürzung für GermanHungerGames (Minecraft Minispiel), bekannt durch YouTuber BastiGHG"
+      "bedeutung": "Abkürzung für GermanHungerGames (Minecraft-Minispiel), bekannt durch YouTuber BastiGHG.",
+      "gruppe": "Abkürzung"
     },
     {
       "begriff": "Shawty",
-      "bedeutung": "Bezeichnung für ein attraktives Mädchen, eine hübsche junge Frau oder die Partnerin."
+      "bedeutung": "Bezeichnung für ein attraktives Mädchen, eine hübsche junge Frau oder die Partnerin.",
+      "gruppe": "Anrede"
     },
     {
       "begriff": "Keta",
-      "bedeutung": "Abkürzung für Ketamin (Rauschmittel)"
+      "bedeutung": "Abkürzung für Ketamin (Rauschmittel).",
+      "gruppe": "Substantiv"
     },
     {
       "begriff": "Atze",
-      "bedeutung": "Bezeichnet einen guten Freund, Kumpel oder „Bruder“; Synonym für „Bro“ oder „Digga“."
+      "bedeutung": "Bezeichnet einen guten Freund, Kumpel oder „Bruder"; Synonym für „Bro" oder „Digga".",
+      "gruppe": "Anrede"
     },
     {
       "begriff": "Hustler",
-      "bedeutung": "Ehrgeizige Person, die unermüdlich für Geld und Erfolg schuftet."
+      "bedeutung": "Ehrgeizige Person, die unermüdlich für Geld und Erfolg schuftet.",
+      "gruppe": "Substantiv"
     },
     {
       "begriff": "Zaza",
-      "bedeutung": "Marihuana (Droge)"
+      "bedeutung": "Marihuana (Droge).",
+      "gruppe": "Substantiv"
     },
     {
       "begriff": "Double Cup",
-      "bedeutung": "Zwei ineinandergesteckte Becher für den Konsum von Lean (Mischung aus Hustensaft und Limonade)."
+      "bedeutung": "Zwei ineinandergesteckte Becher für den Konsum von Lean (Mischung aus Hustensaft und Limonade).",
+      "gruppe": "Substantiv"
     },
     {
       "begriff": "Taho",
-      "bedeutung": "Polizist"
+      "bedeutung": "Polizist.",
+      "gruppe": "Substantiv"
     },
     {
       "begriff": "Doppel G",
-      "bedeutung": "Gucci"
+      "bedeutung": "Gucci.",
+      "gruppe": "Abkürzung"
     },
     {
       "begriff": "Trapper",
-      "bedeutung": "Bezeichnet Rapper oder Anhänger von Trap-Musik, oft mit Bezug zum Street-Lifestyle."
+      "bedeutung": "Bezeichnet Rapper oder Anhänger von Trap-Musik, oft mit Bezug zum Street-Lifestyle.",
+      "gruppe": "Substantiv"
     },
     {
-      "begriff": "hooken",
-      "bedeutung": "Mit jemandem anbandeln, flirten oder eine unverbindliche sexuelle Beziehung eingehen."
+      "begriff": "Hooken",
+      "bedeutung": "Mit jemandem anbandeln, flirten oder eine unverbindliche sexuelle Beziehung eingehen.",
+      "gruppe": "Verb"
     },
     {
       "begriff": "Keeper",
-      "bedeutung": "Eine loyale, wertvolle Person, die man als Partner unbedingt langfristig behalten sollte."
+      "bedeutung": "Eine loyale, wertvolle Person, die man als Partner unbedingt langfristig behalten sollte.",
+      "gruppe": "Substantiv"
     },
     {
       "begriff": "One Night Stand",
-      "bedeutung": "Einmaliger sexueller Kontakt ohne Bindung oder Verpflichtung für nur eine Nacht."
+      "bedeutung": "Einmaliger sexueller Kontakt ohne Bindung oder Verpflichtung für nur eine Nacht.",
+      "gruppe": "Substantiv"
     },
     {
-      "begriff": "straight up",
-      "bedeutung": "Bedeutet „ehrlich gesagt“, „ungelogen“ oder „wirklich“. Dient zur Bestätigung einer Aussage."
+      "begriff": "Straight up",
+      "bedeutung": "Bedeutet „ehrlich gesagt", „ungelogen" oder „wirklich". Dient zur Bestätigung einer Aussage.",
+      "gruppe": "Ausruf"
     },
     {
-      "begriff": "auf Nase sein",
-      "bedeutung": "Unter Drogeneinfluss (meist Kokain oder Speed) stehen oder sich völlig verpeilt verhalten."
+      "begriff": "Auf Nase sein",
+      "bedeutung": "Unter Drogeneinfluss (meist Kokain oder Speed) stehen oder sich völlig verpeilt verhalten.",
+      "gruppe": "Satz/Phrase"
     },
     {
       "begriff": "Schere diggi",
-      "bedeutung": "Bezeichnet Pech, eine Niederlage oder das Eingeständnis eines Fehlers gegenüber Freunden."
+      "bedeutung": "Bezeichnet Pech, eine Niederlage oder das Eingeständnis eines Fehlers gegenüber Freunden.",
+      "gruppe": "Ausruf"
     },
     {
       "begriff": "Akh",
-      "bedeutung": "Arabisch für „Bruder“; dient als vertraute Anrede für gute Freunde, ähnlich wie „Bro“."
+      "bedeutung": "Arabisch für „Bruder"; dient als vertraute Anrede für gute Freunde, ähnlich wie „Bro".",
+      "gruppe": "Anrede"
     },
     {
-      "begriff": "rede",
-      "bedeutung": "Ausruf der Zustimmung"
+      "begriff": "Rede",
+      "bedeutung": "Ausruf der Zustimmung.",
+      "gruppe": "Ausruf"
     },
     {
-      "begriff": "tot",
-      "bedeutung": "langweilig, unlustig, daneben"
+      "begriff": "Tot",
+      "bedeutung": "Langweilig, unlustig, daneben.",
+      "gruppe": "Adjektiv"
     },
     {
       "begriff": "Tuff",
-      "bedeutung": "Sehr cool, krass, beeindruckend"
+      "bedeutung": "Sehr cool, krass, beeindruckend.",
+      "gruppe": "Adjektiv"
     },
     {
-      "begriff": "gang / gng",
-      "bedeutung": "Gang, Bande bzw. Füllwort für Freunde, Bsp: Ich bin so satt, gang"
+      "begriff": "Gang / GNG",
+      "bedeutung": "Gang, Bande bzw. Füllwort für Freunde, Bsp: „Ich bin so satt, gang".",
+      "gruppe": "Substantiv"
     },
     {
-      "begriff": "sybau",
-      "bedeutung": "Klingt harmlos, steht aber für „Shut your bitch ass up“. Wird oft ironisch oder mit Augenzwinkern verwendet. Früher sagte man „Halt die Fresse“."
+      "begriff": "Sybau",
+      "bedeutung": "Klingt harmlos, steht aber für „Shut your bitch ass up". Wird oft ironisch oder mit Augenzwinkern verwendet. Früher sagte man „Halt die Fresse".",
+      "gruppe": "Ausruf"
     },
     {
-      "begriff": "checkst du",
-      "bedeutung": "Wird gesagt, um sicherzugehen, dass das Gegenüber wirklich versteht, was gerade Sache ist. Eine neue Art zu fragen: „Verstehst du?“. Steht meist am Satzende und prüft, ob der andere überhaupt aufgepasst hat."
+      "begriff": "Checkst du",
+      "bedeutung": "Wird gesagt, um sicherzugehen, dass das Gegenüber wirklich versteht, was gerade Sache ist. Eine neue Art zu fragen: „Verstehst du?". Steht meist am Satzende und prüft, ob der andere überhaupt aufgepasst hat.",
+      "gruppe": "Satz/Phrase"
     },
     {
-      "begriff": "das crazy",
-      "bedeutung": "Ein Füllsatz, wenn jemand sprachlos ist, nichts sagen will oder einfach nett bleiben möchte. Vergleichbar mit „Aha, cool“ oder „Okay“. Wird verwendet, um ein Gespräch irgendwie am Laufen zu halten."
+      "begriff": "Das crazy",
+      "bedeutung": "Ein Füllsatz, wenn jemand sprachlos ist, nichts sagen will oder einfach nett bleiben möchte. Vergleichbar mit „Aha, cool" oder „Okay". Wird verwendet, um ein Gespräch irgendwie am Laufen zu halten.",
+      "gruppe": "Satz/Phrase"
     },
     {
       "begriff": "Twin",
-      "bedeutung": "Person, mit der man etwas gemeinsam hat, gute/r Freund/in"
+      "bedeutung": "Person, mit der man etwas gemeinsam hat, gute/r Freund/in.",
+      "gruppe": "Anrede"
     },
     {
       "begriff": "Unc",
-      "bedeutung": "Alte Person, die bestimmte Wörter oder Trends nicht versteht"
+      "bedeutung": "Alte Person, die bestimmte Wörter oder Trends nicht versteht.",
+      "gruppe": "Substantiv"
     },
     {
       "begriff": "Yessirski",
-      "bedeutung": "Ausruf der Zustimmung"
+      "bedeutung": "Ausruf der Zustimmung.",
+      "gruppe": "Ausruf"
     },
     {
       "begriff": "Jaxxen",
-      "bedeutung": "Mastubieren"
+      "bedeutung": "Masturbieren.",
+      "gruppe": "Verb"
     },
     {
       "begriff": "Aura",
-      "bedeutung": "Die Ausstrahlung oder das Charisma einer Person (oft mit Skala 1-10 bewertet)."
+      "bedeutung": "Die Ausstrahlung oder das Charisma einer Person (oft mit Skala 1–10 bewertet).",
+      "gruppe": "Substantiv"
     },
     {
       "begriff": "Babo",
-      "bedeutung": "Der Boss, Anführer oder eine Respektperson."
+      "bedeutung": "Der Boss, Anführer oder eine Respektsperson.",
+      "gruppe": "Substantiv"
     },
     {
       "begriff": "Bodenlos",
-      "bedeutung": "Extrem schlecht, unglaublich oder unverschämt."
+      "bedeutung": "Extrem schlecht, unglaublich oder unverschämt.",
+      "gruppe": "Adjektiv"
     },
     {
       "begriff": "Cringe",
-      "bedeutung": "Fremdscham; etwas ist peinlich oder unangenehm."
+      "bedeutung": "Fremdscham; etwas ist peinlich oder unangenehm.",
+      "gruppe": "Adjektiv"
     },
     {
       "begriff": "Digga / Diggah",
-      "bedeutung": "Anrede für einen Kumpel oder Freund."
+      "bedeutung": "Anrede für einen Kumpel oder Freund.",
+      "gruppe": "Anrede"
     },
     {
       "begriff": "W",
-      "bedeutung": "Gewinn, sehr gut')."
+      "bedeutung": "Gewinn, sehr gut.",
+      "gruppe": "Abkürzung"
     },
     {
       "begriff": "Ehrenmann / Ehrenfrau",
-      "bedeutung": "Jemand, der etwas Besonderes oder Nettes für andere tut."
+      "bedeutung": "Jemand, der etwas Besonderes oder Nettes für andere tut.",
+      "gruppe": "Substantiv"
     },
     {
-      "begriff": "fine shit",
-      "bedeutung": "Jemand oder etwas, das optisch sehr ansprechend ist."
+      "begriff": "Fine shit",
+      "bedeutung": "Jemand oder etwas, das optisch sehr ansprechend ist.",
+      "gruppe": "Adjektiv"
     },
     {
       "begriff": "Flexen",
-      "bedeutung": "Angeben oder mit etwas prahlen."
+      "bedeutung": "Angeben oder mit etwas prahlen.",
+      "gruppe": "Verb"
     },
     {
       "begriff": "Geringverdiener",
-      "bedeutung": "Scherzhafte Beleidigung für jemanden, der sich etwas nicht leisten kann."
+      "bedeutung": "Scherzhafte Beleidigung für jemanden, der sich etwas nicht leisten kann.",
+      "gruppe": "Beleidigung"
     },
     {
       "begriff": "Glow-up",
-      "bedeutung": "Eine starke positive optische oder persönliche Veränderung."
+      "bedeutung": "Eine starke positive optische oder persönliche Veränderung.",
+      "gruppe": "Substantiv"
     },
     {
       "begriff": "Goofy",
-      "bedeutung": "Jemand, der sich tollpatschig, komisch oder albern verhält."
+      "bedeutung": "Jemand, der sich tollpatschig, komisch oder albern verhält.",
+      "gruppe": "Adjektiv"
     },
     {
       "begriff": "Habibi",
-      "bedeutung": "Arabisch für 'mein Geliebter/Schatz', oft unter Freunden genutzt."
+      "bedeutung": "Arabisch für „mein Geliebter/Schatz", oft unter Freunden genutzt.",
+      "gruppe": "Anrede"
     },
     {
       "begriff": "Lost",
-      "bedeutung": "Jemand, der ahnungslos, verwirrt oder unschlüssig ist."
+      "bedeutung": "Jemand, der ahnungslos, verwirrt oder unschlüssig ist.",
+      "gruppe": "Adjektiv"
     },
     {
       "begriff": "Macher",
-      "bedeutung": "Jemand, der Dinge ohne Zögern anpackt und umsetzt."
+      "bedeutung": "Jemand, der Dinge ohne Zögern anpackt und umsetzt.",
+      "gruppe": "Substantiv"
     },
     {
       "begriff": "Main Character",
-      "bedeutung": "Wenn jemand sich so verhält, als wäre er die Hauptfigur."
+      "bedeutung": "Wenn jemand sich so verhält, als wäre er die Hauptfigur.",
+      "gruppe": "Substantiv"
     },
     {
       "begriff": "Muss los",
-      "bedeutung": "Ausdruck, wenn man schnell weg möchte."
+      "bedeutung": "Ausdruck, wenn man schnell weg möchte.",
+      "gruppe": "Satz/Phrase"
     },
     {
       "begriff": "No Cap",
-      "bedeutung": "'Ohne Lüge' / 'Echt jetzt' (wird zur Bekräftigung gesagt)."
+      "bedeutung": "„Ohne Lüge" / „Echt jetzt" (wird zur Bekräftigung gesagt).",
+      "gruppe": "Ausruf"
     },
     {
       "begriff": "NPC",
-      "bedeutung": "'Non-Player Character'; jemand, der passiv ist oder keine eigene Meinung hat."
+      "bedeutung": "„Non-Player Character"; jemand, der passiv ist oder keine eigene Meinung hat.",
+      "gruppe": "Abkürzung"
     },
     {
       "begriff": "Period",
-      "bedeutung": "Diskussionsbeender ('Punkt.')."
+      "bedeutung": "Diskussionsbeender („Punkt.").",
+      "gruppe": "Ausruf"
     },
     {
       "begriff": "Rizz",
-      "bedeutung": "Charisma und Flirt-Fähigkeiten."
+      "bedeutung": "Charisma und Flirt-Fähigkeiten.",
+      "gruppe": "Substantiv"
     },
     {
       "begriff": "Same",
-      "bedeutung": "zustimmung; man fühlt oder denkt genau das gleiche."
+      "bedeutung": "Zustimmung; man fühlt oder denkt genau das Gleiche.",
+      "gruppe": "Ausruf"
     },
     {
       "begriff": "Sheesh",
-      "bedeutung": "Ausdruck des Erstaunens."
+      "bedeutung": "Ausdruck des Erstaunens.",
+      "gruppe": "Ausruf"
     },
     {
       "begriff": "Slay",
-      "bedeutung": "Wenn jemand besonders gut aussieht oder abliefert."
+      "bedeutung": "Wenn jemand besonders gut aussieht oder abliefert.",
+      "gruppe": "Ausruf"
     },
     {
       "begriff": "Simp",
-      "bedeutung": "Jemand, der sich einer anderen Person extrem unterwürfig verhält."
+      "bedeutung": "Jemand, der sich einer anderen Person extrem unterwürfig verhält.",
+      "gruppe": "Substantiv"
     },
     {
       "begriff": "Sus",
-      "bedeutung": "Kurz für 'suspicious'; verdächtig oder seltsam."
+      "bedeutung": "Kurz für „suspicious"; verdächtig oder seltsam.",
+      "gruppe": "Adjektiv"
     },
     {
       "begriff": "Talahon",
-      "bedeutung": "Jugendliche mit bestimmtem Modestil (Luxus-Imitate, Umhängetasche)."
+      "bedeutung": "Jugendliche mit bestimmtem Modestil (Luxus-Imitate, Umhängetasche).",
+      "gruppe": "Substantiv"
     },
     {
       "begriff": "Vibe",
-      "bedeutung": "Die Stimmung oder Atmosphäre."
+      "bedeutung": "Die Stimmung oder Atmosphäre.",
+      "gruppe": "Substantiv"
     },
     {
       "begriff": "Wild / Wyld",
-      "bedeutung": "Krass oder außergewöhnlich."
+      "bedeutung": "Krass oder außergewöhnlich.",
+      "gruppe": "Adjektiv"
     },
     {
       "begriff": "Yolo",
-      "bedeutung": "'You Only Live Once'."
+      "bedeutung": "„You Only Live Once".",
+      "gruppe": "Abkürzung"
     },
     {
       "begriff": "Cooken",
-      "bedeutung": "Etwas vorbereiten oder eine Theorie aufstellen ('Let him cook')."
+      "bedeutung": "Etwas vorbereiten oder eine Theorie aufstellen („Let him cook").",
+      "gruppe": "Verb"
     },
     {
       "begriff": "Skibidi",
-      "bedeutung": "Referenz auf Internet-Memes, oft bedeutungslos als Füllwort genutzt."
+      "bedeutung": "Referenz auf Internet-Memes, oft bedeutungslos als Füllwort genutzt.",
+      "gruppe": "Ausruf"
     },
     {
       "begriff": "Ohio",
-      "bedeutung": "Etwas ist seltsam oder verstörend (Internet-Meme)."
+      "bedeutung": "Etwas ist seltsam oder verstörend (Internet-Meme).",
+      "gruppe": "Adjektiv"
     },
     {
       "begriff": "Mewing",
-      "bedeutung": "Zungenübung für eine markante Kieferlinie."
+      "bedeutung": "Zungenübung für eine markante Kieferlinie.",
+      "gruppe": "Verb"
     },
     {
       "begriff": "Looksmaxxing",
-      "bedeutung": "Das Maximum aus dem eigenen Aussehen herausholen."
+      "bedeutung": "Das Maximum aus dem eigenen Aussehen herausholen.",
+      "gruppe": "Verb"
     },
     {
       "begriff": "Moggen",
-      "bedeutung": "Jemanden optisch durch Attraktivität übertrumpfen."
+      "bedeutung": "Jemanden optisch durch Attraktivität übertrumpfen.",
+      "gruppe": "Verb"
     },
     {
       "begriff": "Chat",
-      "bedeutung": "Ansprache an die Zuschauer (auch im echten Leben genutzt)."
+      "bedeutung": "Ansprache an die Zuschauer (auch im echten Leben genutzt).",
+      "gruppe": "Anrede"
     },
     {
       "begriff": "Hops genommen",
-      "bedeutung": "Jemanden besiegt oder vorgeführt."
+      "bedeutung": "Jemanden besiegt oder vorgeführt.",
+      "gruppe": "Satz/Phrase"
     },
     {
       "begriff": "Yap",
-      "bedeutung": "Viel reden ohne Inhalt ('Yapping')."
+      "bedeutung": "Viel reden ohne Inhalt („Yapping").",
+      "gruppe": "Verb"
     },
     {
       "begriff": "Gatekeepen",
-      "bedeutung": "Informationen für sich behalten, damit sie nicht populär werden."
+      "bedeutung": "Informationen für sich behalten, damit sie nicht populär werden.",
+      "gruppe": "Verb"
     },
     {
       "begriff": "Valid",
-      "bedeutung": "Etwas ist berechtigt oder okay."
+      "bedeutung": "Etwas ist berechtigt oder okay.",
+      "gruppe": "Adjektiv"
     },
     {
       "begriff": "Glazen",
-      "bedeutung": "Jemanden extrem overhypen oder bewundern."
+      "bedeutung": "Jemanden extrem overhypen oder bewundern.",
+      "gruppe": "Verb"
     },
     {
       "begriff": "Grinden",
-      "bedeutung": "Hart für ein Ziel arbeiten (meist Gaming)."
+      "bedeutung": "Hart für ein Ziel arbeiten (meist Gaming).",
+      "gruppe": "Verb"
     },
     {
       "begriff": "Side-eye",
-      "bedeutung": "Jemanden schräg/skeptisch von der Seite anschauen."
+      "bedeutung": "Jemanden schräg/skeptisch von der Seite anschauen.",
+      "gruppe": "Verb"
     },
     {
       "begriff": "Ghosten",
-      "bedeutung": "Den Kontakt ohne Erklärung komplett abbrechen."
+      "bedeutung": "Den Kontakt ohne Erklärung komplett abbrechen.",
+      "gruppe": "Verb"
     },
     {
       "begriff": "Red Flag",
-      "bedeutung": "Ein Warnsignal für einen schlechten Charakter."
+      "bedeutung": "Ein Warnsignal für einen schlechten Charakter.",
+      "gruppe": "Substantiv"
     },
     {
       "begriff": "Green Flag",
-      "bedeutung": "Ein Zeichen für einen guten Charakter."
+      "bedeutung": "Ein Zeichen für einen guten Charakter.",
+      "gruppe": "Substantiv"
     },
     {
       "begriff": "Ick",
-      "bedeutung": "Ein Attribut, welches Abneigung gegen jemanden hervorruft, siehe auch Red Flag."
+      "bedeutung": "Ein Attribut, welches Abneigung gegen jemanden hervorruft, siehe auch Red Flag.",
+      "gruppe": "Substantiv"
     },
     {
       "begriff": "Lowkey",
-      "bedeutung": "Heimlich oder dezent."
+      "bedeutung": "Heimlich oder dezent.",
+      "gruppe": "Adjektiv"
     },
     {
       "begriff": "Highkey",
-      "bedeutung": "Offensichtlich, total oder extrem. Betont, dass etwas eindeutig ist und offen kommuniziert wird."
+      "bedeutung": "Offensichtlich, total oder extrem. Betont, dass etwas eindeutig ist und offen kommuniziert wird.",
+      "gruppe": "Adjektiv"
     },
     {
       "begriff": "Clout",
-      "bedeutung": "Einfluss oder Ruhm (meist online)."
+      "bedeutung": "Einfluss oder Ruhm (meist online).",
+      "gruppe": "Substantiv"
     },
     {
       "begriff": "Drip",
-      "bedeutung": "Ein sehr guter Modestil."
+      "bedeutung": "Ein sehr guter Modestil.",
+      "gruppe": "Substantiv"
     },
     {
       "begriff": "Gaslighten",
-      "bedeutung": "Jemanden manipulieren, bis er an der eigenen Wahrnehmung zweifelt."
+      "bedeutung": "Jemanden manipulieren, bis er an der eigenen Wahrnehmung zweifelt.",
+      "gruppe": "Verb"
     },
     {
       "begriff": "Mid",
-      "bedeutung": "Mittelmäßig oder langweilig."
+      "bedeutung": "Mittelmäßig oder langweilig.",
+      "gruppe": "Adjektiv"
     },
     {
       "begriff": "Tea spillen",
-      "bedeutung": "Gerüchte oder Geheimnisse erzählen."
+      "bedeutung": "Gerüchte oder Geheimnisse erzählen.",
+      "gruppe": "Verb"
     },
     {
       "begriff": "Zesty",
-      "bedeutung": "Etwas ist komisch, lebhaft oder queer-codiert."
+      "bedeutung": "Etwas ist komisch, lebhaft oder queer-codiert.",
+      "gruppe": "Adjektiv"
     },
     {
       "begriff": "Gyatt",
-      "bedeutung": "großes Hinterteil."
+      "bedeutung": "Großes Hinterteil.",
+      "gruppe": "Substantiv"
     },
     {
       "begriff": "Sigma",
-      "bedeutung": "Ein erfolgreicher Einzelgänger (oft ironisch)."
+      "bedeutung": "Ein erfolgreicher Einzelgänger (oft ironisch).",
+      "gruppe": "Substantiv"
     },
     {
       "begriff": "Alpha",
-      "bedeutung": "Anführer-Typ (oft ironisch)."
+      "bedeutung": "Anführer-Typ (oft ironisch).",
+      "gruppe": "Substantiv"
     },
     {
       "begriff": "Beta",
-      "bedeutung": "Unterwürfiger Typ (Abwertung)."
+      "bedeutung": "Unterwürfiger Typ (Abwertung).",
+      "gruppe": "Adjektiv"
     },
     {
       "begriff": "Smash",
-      "bedeutung": "Zustimmung zu Attraktivität, man würde mit der Person schlafen."
+      "bedeutung": "Zustimmung zu Attraktivität, man würde mit der Person schlafen.",
+      "gruppe": "Verb"
     },
     {
       "begriff": "Pass",
-      "bedeutung": "Ablehnung bei Attraktivität, man würde nicht mit der Person schlafen."
+      "bedeutung": "Ablehnung bei Attraktivität, man würde nicht mit der Person schlafen.",
+      "gruppe": "Verb"
     },
     {
       "begriff": "Gooning",
-      "bedeutung": "Eigentlich extreme Masturbation, oft als Synonym für normale Masturbation benutzt."
+      "bedeutung": "Eigentlich extreme Masturbation, oft als Synonym für normale Masturbation benutzt.",
+      "gruppe": "Verb"
     },
     {
       "begriff": "Edging",
-      "bedeutung": "Masturbation bis zum Limit hinauszögern."
+      "bedeutung": "Masturbation bis zum Limit hinauszögern.",
+      "gruppe": "Verb"
     },
     {
       "begriff": "Pookie",
-      "bedeutung": "Freunde oder Partner."
+      "bedeutung": "Freunde oder Partner.",
+      "gruppe": "Anrede"
     },
     {
       "begriff": "Babygirl",
-      "bedeutung": "Bezeichnung für süße Person, Freundin."
+      "bedeutung": "Bezeichnung für süße Person, Freundin.",
+      "gruppe": "Anrede"
     },
     {
       "begriff": "Beef",
-      "bedeutung": "Streit oder Auseinandersetzung."
+      "bedeutung": "Streit oder Auseinandersetzung.",
+      "gruppe": "Substantiv"
     },
     {
       "begriff": "Capping",
-      "bedeutung": "Lügen."
+      "bedeutung": "Lügen.",
+      "gruppe": "Verb"
     },
     {
       "begriff": "G",
-      "bedeutung": "Kurz für 'Gangster' oder ein guter Freund."
+      "bedeutung": "Kurz für „Gangster" oder ein guter Freund.",
+      "gruppe": "Anrede"
     },
     {
       "begriff": "Main",
-      "bedeutung": "Die wichtigste Person oder das Haupt-Etwas."
+      "bedeutung": "Die wichtigste Person oder das Haupt-Etwas.",
+      "gruppe": "Substantiv"
     },
     {
       "begriff": "Safe",
-      "bedeutung": "drückt absolute sicherheit oder zustimmung aus („auf jeden fall“)."
+      "bedeutung": "Drückt absolute Sicherheit oder Zustimmung aus („auf jeden Fall").",
+      "gruppe": "Ausruf"
     },
     {
       "begriff": "Tea",
-      "bedeutung": "Klatsch und Tratsch."
+      "bedeutung": "Klatsch und Tratsch.",
+      "gruppe": "Substantiv"
     },
     {
       "begriff": "Yikes",
-      "bedeutung": "Ausdruck von Unbehagen."
+      "bedeutung": "Ausdruck von Unbehagen.",
+      "gruppe": "Ausruf"
     },
     {
-      "begriff": "Zero chill",
-      "bedeutung": "Wenn jemand überreagiert."
+      "begriff": "Zero Chill",
+      "bedeutung": "Wenn jemand überreagiert.",
+      "gruppe": "Satz/Phrase"
     },
     {
       "begriff": "Fam",
-      "bedeutung": "Engste Freunde, Familie."
+      "bedeutung": "Engste Freunde, Familie.",
+      "gruppe": "Anrede"
     },
     {
       "begriff": "Lit",
-      "bedeutung": "Sehr cool oder aufregend."
+      "bedeutung": "Sehr cool oder aufregend.",
+      "gruppe": "Adjektiv"
     }
   ]
 }
